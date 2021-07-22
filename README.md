@@ -1,6 +1,5 @@
-# wp_plugin
-A Wordpress Plugin that creates a complete web directory (with categories, links, management) that pools and aggregates the web traffic of the members into a larger, more valuable block of traffic. Installation enables members with agency relationship to sell the aggregate for long-term commissions.
+# wordpress_plugin
+Creates a complete (i.e. with categories and links) web directory on a Wordpress website. Requires registration at an active Manna Network agent website. The registration and installation process enable the site to earn BitcoinSV commissions.
 
-You need to be a registered advertiser in the manna network (free) to configure the plugin.
 
-If you are not registered then (preferrably) do so at the website where you found out about the Manna network or visit Manna-Network.com/register.php and select one of the major members.
+Important: After creating the page where the directory will be displayed it is strongly suggested you add "<meta name="robots" content="noindex,follow">" to the page's metatags. Since the purpose of distributing the directory is to have the advertoser's ads on tens/hundreds of thousands of websites, the search engines will consider each copy as "duplicate content" and might penalize the page (or your site).
