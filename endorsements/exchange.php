@@ -45,11 +45,11 @@ print_r($_POST);
 <input type='hidden' name='store' id='store' value='true'/>
 <input type='hidden' name='amount' id='amount' value='<?php echo $_POST['amount'];?>'/>
 <input type='hidden' name='userid' id='userid' value='<?php echo $_POST['userid'];?>'/>'/>
-
+<input type='hidden' name='agentid' id='agentid' value='17'/> 
 
 
 Ad Credits: Amount <?php echo $_POST['amount'];?>/><br>
-Recipient: <?php echo $_POST['userid'];?>/>
+User ID: <?php echo $_POST['userid'];?>/>
 
 <input type="submit" name="submit" value="Submit">
 
@@ -66,10 +66,20 @@ else
 <input type='hidden' name='confirm' id='confirm' value='true'/>
 Ad Credits: Amount <input type='text' name='amount' id='amount' />
 <br>
-Recipient: <input type='text' name='userid' id='userid' />
+User ID: <input type='text' name='userid' id='userid' />
 
 <input type="submit" name="submit" value="Submit">
 
+    
+<?php
+//Added July 26, 2021. Found from https://www.php.net/manual/en/function.is-numeric.php
+function get_numeric($agentid) {
+  if (is_numeric($agentid)) {
+    return $agentid + 0;
+  }
+  return 0;
+} 
+?>
 </form>
 </body>
 </html>
