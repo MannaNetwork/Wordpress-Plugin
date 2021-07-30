@@ -20,6 +20,7 @@ define("MESSAGE_EMAIL_SAME_LIKE_OLD_ONE", "Sorry, that email address is the same
 define("MESSAGE_EMAIL_TOO_LONG", "電子郵件地址不能超過64個字符");
 define("MESSAGE_LINK_PARAMETER_EMPTY", "Empty link parameter data.");
 define("MESSAGE_LOGGED_OUT", "你已經登出。");
+
 // The "login failed"-message is a security improved feedback that doesn't show a potential attacker if the user exists or not
 define("MESSAGE_LOGIN_FAILED", "Login failed.");
 define("MESSAGE_OLD_PASSWORD_WRONG", "Your OLD password was wrong.");

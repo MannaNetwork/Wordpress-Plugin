@@ -33,7 +33,7 @@ foreach($comboList[0] as $key=>$value){
 echo '<tr>
                   <td>KEY = ', $key;
 echo '  .... .........  ......  VALUE = ';
-//print_r($value);
+
 echo '<br>', $comboList[0][$key]['id'];// 879 
 echo '<br>', $comboList[0][$key]['name'];// Download Soft Free, Try It and Buy It 
 echo '<br>', $comboList[0][$key]['parent'];// 879 

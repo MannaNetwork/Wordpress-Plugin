@@ -7,14 +7,6 @@
  */
 
 // login & registration classes
-
-/**
- * Please note: we can use unencoded characters like ö, é etc here as we use the html5 doctype with utf8 encoding
- * in the application's header (in views/_header.php). To add new languages simply copy this file,
- * and create a language switch in your root files.
- */
-
-// login & registration classes
 define("REGISTRATION_CATEGORY_HEADING", "<h4>SELECT CATEGORY (Required)</h4>");
 define("REGISTRATION_REGIONAL_HEADING", "<h4>ADD REGIONAL INFO (Optional)</h4>");
 define("WORDING_LINKEXCHANGE_PAGE_NAME", "PAGE");
