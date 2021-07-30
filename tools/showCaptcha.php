@@ -55,7 +55,7 @@ for($i=0;$i<1000;$i++) {
 
 // create letters. for more info on how this works, please
 // @see php.net/manual/en/function.imagefttext.php
-
+// TODO: put the font path into the config
 for ($i=0; $i < $iCaptchaLength; $i++) {
     $text_color = imagecolorallocate($im, rand(0, 100), rand(10, 100), rand(0, 100));
     // font-path relative to this file
