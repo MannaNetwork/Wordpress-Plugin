@@ -8,4 +8,6 @@ echo '<h2>Configuration Status</h2><h3 style="color:red;">We were not able to de
 <h3>AND it will send traffic to your website from the growing network of other websites using the plugin!</h3>
 <h3>After registering, refresh this page.</h3>';
 
+//echo '<img src = "/wp-content/plugins/manna-network/translations/screenshot.png">';
+
 ?>
