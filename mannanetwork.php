@@ -23,6 +23,7 @@
 * Enqueue CSS
 */
 	wp_enqueue_style( 'mannamainstyle', plugin_dir_url( __DIR__ ) . 'manna-network/css/styles.css', '', '1.01' );
+	wp_enqueue_style( 'mannamainstyle', plugin_dir_url( __DIR__ ) . 'manna-network/css/style.css', '', '1.01' );
 	wp_enqueue_style( 'cssmenustyle1', plugin_dir_url( __DIR__ ) . 'manna-network/css/reset.min.css', '', '1.01' );
 	wp_enqueue_style( 'cssmenustyle2', plugin_dir_url( __DIR__ ) . 'manna-network/css/style.min.css', '', '1.01' );
 	wp_enqueue_style( 'cssmenustyle3', plugin_dir_url( __DIR__ ) . 'manna-network/css/ionicon.min.css', '', '1.01' );
