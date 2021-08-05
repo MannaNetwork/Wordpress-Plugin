@@ -492,8 +492,9 @@ span.dropt:hover span {margin: 20px 0 0 170px; background: #ffffff; z-index:6;}
 </style></div>';
 echo  $display_blockmp;
 
-/* *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~ No editing beyond this point!! *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~ */
 
 }
+/* *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~ No editing beyond this point!! *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~ */
+
 get_footer();
 ?>
