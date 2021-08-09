@@ -25,8 +25,9 @@ if ( isset( $_POST['main_cat_nonce'] ) ) {
 		<option value='y:2740:Middle East'>Middle East</option>";
 		echo '</select><br>
 		      <div id="locHint1" name="locHint1"><b>' . esc_attr( WORDING_AJAX_REGIONAL_MENU1 ) . '</b></div>
- <input type="hidden" id="regional_name" name="regional_name" class ="regional_name" value="">
-					 <input type="hidden" id="tregional_num" name="tregional_num" class ="tregional_num" value="" readonly> 
+ <input type="hidden" id="selected_region_name" name="selected_region_name" class ="selected_region_name" value="">
+					 <input type="hidden" id="tregional_num" name="tregional_num" class ="tregional_num" value="" > 
+					 <input type="hidden" id="selected_region_id" name="selected_region_id" class ="selected_region_id" value="" >
 		</td></tr></table></form>	</span>';
 
 

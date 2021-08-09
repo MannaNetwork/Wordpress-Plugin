@@ -39,13 +39,13 @@ if ( isset( $_POST['main_cat_nonce'] ) ) {
 echo '
 <script>
 var main_cat_nonce = "'.esc_attr( $nonce ).'"
-var original_cat_id = "'.esc_attr( $selected_cat_id ) . '"
+var original_cat_id = "'.esc_attr( $category_id ) . '"
 </script>';
 		echo '<span id="mn_subcat_container"> 
 <form action=""> <table id="mn_subcat_table">
 <tr><td style="width:45%;">
-<select name="category_menu" onchange="updategoButton(this.value,\'false\',\'' . esc_attr( $nonce ) . '\',\'' . esc_attr( $selected_cat_id ) . '\'), showSubLoc1(this.value,\'' . esc_attr( $nonce ) . '\',1,\'' . esc_attr( $selected_cat_id ) . '\',\'categories\')"><option value="">' . esc_attr( WORDING_AJAX_MENU1 ) . '</option> ';
-		echo "<option value='y:" . esc_attr( $selected_cat_id ) . ":'></option>";
+<select name="category_menu" onchange="updategoButton(this.value,\'false\',\'' . esc_attr( $nonce ) . '\',\'' . esc_attr( $category_id ) . '\'), showSubLoc1(this.value,\'' . esc_attr( $nonce ) . '\',1,\'' . esc_attr( $category_id ) . '\',\'categories\')"><option value="">' . esc_attr( WORDING_AJAX_MENU1 ) . '</option> ';
+		echo "<option value='y:" . esc_attr( $category_id ) . ":'></option>";
 		foreach ( $category_list as $key => $value ) {
 			if ( $category_list[ $key ]['lft'] + 1 < $category_list[ $key ]['rgt'] ) {
 				echo "<option value='y:" . esc_attr( $category_list[ $key ]['id'] ) . ':' . esc_attr( $category_list[ $key ]['name'] ) . "'>" . esc_attr( $category_list[ $key ]['name'] ) . '</option>';
@@ -54,7 +54,7 @@ var original_cat_id = "'.esc_attr( $selected_cat_id ) . '"
 			}
 		}
 		echo '</select>
-		      <div class="catHint1" id="catHint1" name="catHint1"><b>' . esc_attr( WORDING_AJAX_1 ) . '</b></div><input type="hidden" id="category_name" name="category_name" class ="category_name" value="">
-<input type="hidden" id="$selected_cat_id" name="$selected_cat_id" class ="$selected_cat_id" value=""><!--</div>--></td></tr></table></form></span>	';
+		      <div class="catHint1" id="catHint1" name="catHint1"><b>' . esc_attr( WORDING_AJAX_1 ) . '</b></div><input type="hidden" id="selected_cat_name" name="selected_cat_name" class ="selected_cat_name" value="">
+<input type="hidden" id="selected_cat_id" name="selected_cat_id" class ="selected_cat_id" value=""><!--</div>--></td></tr></table></form></span>	';
 	}
 

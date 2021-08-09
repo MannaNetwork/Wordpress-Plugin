@@ -1,9 +1,17 @@
 <?php
+
+echo '<br> comblinks_wp_one_page.php';
+
+echo '<br>http_host       =>',  $_SERVER['HTTP_HOST'];
+				echo '<br> category_id     =>', $category_id;
+				echo '<br>tregional_num =>', $tregional_num;
 unset($links_list_2);
 unset($response);
 unset($file);
 
 $file = 'https://' . $mn_agent_url . '/' . $mn_agent_folder . '/mannanetwork-dir/combget_links_json_one_page.php';
+echo '<br> file = ', $file;
+
 
 if ( strpos( get_site_url(), 'https://' ) !== false ) {
 	$http_host = str_replace( 'https://', '', get_site_url() );
@@ -23,7 +31,7 @@ if ( strpos( get_site_url(), 'https://' ) !== false ) {
 			'blocking'    => true,
 			'headers'     => array(),
 			'body'        => array(
-				'http_host'       => $http_host,
+				'http_host'       => $_SERVER['HTTP_HOST'],
 				'category_id'     => $category_id,
 				'tregional_num' => $tregional_num,
 				

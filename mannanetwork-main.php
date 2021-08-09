@@ -1,5 +1,5 @@
 <?php
-/** Dev note - if the value is "change me" it means the wp plugin hasn't been configured
+/** 
  *
 @package Manna Network*/
 
@@ -15,37 +15,32 @@ if ( get_option( 'mn_agent_ID' ) && get_option( 'mn_agent_ID' ) !== 'changeme' )
 }
 if ( get_option( 'mn_agent_url' ) && get_option( 'mn_agent_url' ) !== 'changeme' ) {
 	$mn_agent_url = get_option( 'mn_agent_url' );
-} /*else {
+} else {
 	$mn_agent_url = '1stbitcoinbank.com';
-}  */
+}
 if ( get_option( 'mn_agent_folder' ) && get_option( 'mn_agent_folder' ) !== 'changeme' ) {
 	$mn_agent_folder = get_option( 'mn_agent_folder' );
-} 
-/*else {
+} else {
 	$mn_agent_folder = 'manna_network';
-} */
+}
 if ( get_option( 'wp_page_name' ) && get_option( 'wp_page_name' ) !== 'changeme' ) {
 	$wp_page_name = get_option( 'wp_page_name' );
 } else {
 	$wp_page_name = 'change_me';
 }
-$plugin_is_registered = get_option('plugin_is_registered');
 
-require 'translations/en.php';
+$plugin_is_registered = get_option('plugin_is_registered');
+if (!defined('REGISTRATION_CATEGORY_HEADING')) {
+include('translations/en.php')  ;
+}
 require 'translations/en.js';
 
 /*
 Dev Notes: Have alot of problems with css between different themes. The following css makes all the lettering of the Paginator's page loads (not the first page loaded) have white text (which makes it invisible unless mouseovered). Commenting out the css gets the text displayed with black color
 */
 
-
-
-if($plugin_is_registered !== "yes" ){
-echo '<br>mannanetwork-main line 44 in if $plugin_is_registered !== "yes"';
-	if ( 'change_me' !== $mn_local_lnk_num || '' === $mn_local_lnk_num ) {
-	echo '<br>mannanetwork-main line 46 in if change_me !== $mn_local_lnk_num || "" === $mn_local_lnk_num ';
-echo '<br>mannanetwork-main line 47 in if change_me !== $mn_local_lnk_num || "" === $mn_local_lnk_num ... $mn_local_lnk_num  = ', $mn_local_lnk_num ;
-
+if($plugin_is_registered !== "yes"){
+	if ( 'change_me' === $mn_local_lnk_num || '' === $mn_local_lnk_num ) {
 	$file = 'https://' . $mn_agent_url . '/' . $mn_agent_folder . '/wp_errors/no_link_id.php';
 	if ( strpos( get_site_url(), 'https://' ) !== false ) {
 		$http_host = str_replace( 'https://', '', get_site_url() );
@@ -88,7 +83,6 @@ else
  exit();
 }
 
-
 $file = 'http://exchange.manna-network.com/incoming/check_for_widget.php';
 if ( strpos( get_site_url(), 'https://' ) !== false ) {
 	$http_host = str_replace( 'https://', '', get_site_url() );
@@ -122,44 +116,15 @@ if ( strpos( get_site_url(), 'https://' ) !== false ) {
 	}
 
 }
+	include(dirname( __FILE__, 1 ).'/css/members_menu.css');
 
 //	echo '<div id="mn_main_container"><div id="mn_main_menu_container"> <a href="' . esc_attr( get_site_url() ) . '/' . esc_attr( $wp_page_name ) . ' ">Top Level</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="?register=true&lnk_num=' . esc_attr( $mn_local_lnk_num ) . '&agent_id=' . esc_attr( $mn_agent_id ) . '">Add URL</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="?earn_income=true&lnk_num=' . esc_attr( $mn_local_lnk_num ) . '&agent_id=' . esc_attr( $mn_agent_id ) . '">Earn Income</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="?about_bitcoin=true&lnk_num=' . esc_attr( $mn_local_lnk_num ) . '&agent_id=' . esc_attr( $mn_agent_id ) . '">About Bitcoin</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://' . esc_attr( $mn_agent_url ) . '/' . esc_attr( $mn_agent_folder ) . '/manna-network/members">Login</a>';
-echo '<style> input.MyButton {
-width: 250px;
-height: 50px;
-padding: 20px;
-cursor: pointer;
-font-weight: bold;
-font-size: 125%;
-background: gray;
-color: #fff;
-border: 1px solid #3366cc;
-border-radius: 10px;
--moz-box-shadow:: 6px 6px 5px #999;
--webkit-box-shadow:: 6px 6px 5px #999;
-box-shadow:: 6px 6px 5px #999;
-}
-input.MyButton:hover {
-color: #ffff00;
-background: #000;
-border: 1px solid #fff;
-}
-</style>';
-/*
-echo plugin_dir_url( __DIR__ ) . 'manna-network/css/styles.css';
- echo '<br>get_template_directory_uri() .  = ', get_template_directory_uri() ;
+echo '<div id="mn_main_container"><div id="mn_main_menu_container" style="width: 90% ;
+  margin-left: 0 ;
+  margin-right: auto ;">
+<ul class="navmenu">';
 
-echo '<span>
- <form>
-<input class="MyButton" type="button" value="Top Level" onclick="window.location.href=\'advertise\'" />
-
-<input class="MyButton" type="button" value="Add URL" onclick="window.location.href=\'advertise?register=true&lnk_num=' . esc_attr( $mn_local_lnk_num ) . '&agent_id=' . esc_attr( $mn_agent_id ).'\'" />
-<select name=”color”><input class="MyButton" type="button" value="Earn Bitcoin" onclick="window.location.href=\'advertise?earn_income=true&lnk_num=' . esc_attr( $mn_local_lnk_num ) . '&agent_id=' . esc_attr( $mn_agent_id ).'\'" />
-<option value=”red”>Red</option>
-<option value=”purple”>Purple </option>
-</select>
-</form> '; */
-
+include(dirname( __FILE__, 1 ).'/includes/_menu.php');
 
 	if ( isset( $_GET['register'] ) ) {
 		include 'js/registration.js';
@@ -182,9 +147,6 @@ echo '<span>
 		exit();
 	} elseif ( isset( $_GET['get_filters_info'] ) ) {
 		include 'endorsements/get_filters_info.php';
-		exit();
-	} elseif ( isset( $_GET['get_about_info'] ) ) {
-		include 'endorsements/about.php';
 		exit();
 	}
 	echo '</div>';
@@ -231,13 +193,7 @@ It will NEVER have a regional number
 			$bsv_pop_blockt_message = 'bsv_pop_blockt_message';
 
 			// I don't think goLink is necessary here on registration page?
-	echo '<div style="width: 300px;
-    position: absolute;
-    left: 50%;
-    margin-left: -150px; /*half of width*/">';		
-include('included_menu.php');
 
-echo '</div>';
 			echo '<div class="container">
 <div class="column-center" id="column-center"><p id="goLink" name="goLink" class="goLink">&nbsp;</p><p id="clear_button" name="clear_button" class="clear_button">&nbsp;</p></div><div class="column-left" id="column-left">';
 
@@ -280,16 +236,12 @@ echo '</div>';
 				// get the opening, first page of links. Since the paginator loaded links to retrieve all the pages, these will be replaced by javascript when user selects a page !
 
 				include 'comblinks_wp_first_page.php';
-
-				$links_list_2 = json_decode( $links_list_2, true );
-
-
-
-				foreach ( $links_list_2 as $key => $value ) {
-					echo '<tr><td><a target="_blank" href="' . esc_attr( $links_list_2[ $key ]['url'] ) . '">' . esc_attr( $links_list_2[ $key ]['name'] ) . '	<br>' . esc_attr( $links_list_2[ $key ]['description'] );
-					if ( isset( $links_list_2[ $key ]['website_street'] ) ) {
-						echo '<br>' . esc_attr( $links_list_2[ $key ]['website_street'] );
-						echo '<br>' . esc_attr( $links_list_2[ $key ]['website_district'] );
+				$links_list_3 = json_decode( $links_list_2, true );
+				foreach ( $links_list_3 as $key => $value ) {
+					echo '<tr><td><a target="_blank" href="' . esc_attr( $links_list_3[ $key ]['url'] ) . '">' . esc_attr( $links_list_3[ $key ]['name'] ) . '	<br>' . esc_attr( $links_list_3[ $key ]['description'] );
+					if ( isset( $links_list_3[ $key ]['website_street'] ) ) {
+						echo '<br>' . esc_attr( $links_list_3[ $key ]['website_street'] );
+						echo '<br>' . esc_attr( $links_list_3[ $key ]['website_district'] );
 					}
 					echo '</a></td> </tr>';
 
@@ -299,16 +251,17 @@ echo '</div>';
 			} else {
 				/** Echo '<h1> this is where to handle only 1 page of results</h1>'; */
 				include 'comblinks_wp_one_page.php';
-
-				$links_list_2 = json_decode( $response['body'], true );
+				
+				
+				$links_list_3 = json_decode( $response['body'], true );
 				echo '<div><table id="mn_results_table"><caption>Results Page</caption><tbody>';
 
 
-				foreach ( $links_list_2 as $key => $value ) {
-					echo '<tr><td><a target="_blank" href="' . esc_attr( $links_list_2[ $key ]['url'] ) . '">' . esc_attr( $links_list_2[ $key ]['name'] ) . '	<br>' . esc_attr( $links_list_2[ $key ]['description'] );
-					if ( isset( $links_list_2[ $key ]['website_street'] ) ) {
-							echo '<br>' . esc_attr( $links_list_2[ $key ]['website_street'] );
-							echo '<br>' . esc_attr( $links_list_2[ $key ]['website_district'] );
+				foreach ( $links_list_3 as $key => $value ) {
+					echo '<tr><td><a target="_blank" href="' . esc_attr( $links_list_3[ $key ]['url'] ) . '">' . esc_attr( $links_list_3[ $key ]['name'] ) . '	<br>' . esc_attr( $links_list_3[ $key ]['description'] );
+					if ( isset( $links_list_3[ $key ]['website_street'] ) ) {
+							echo '<br>' . esc_attr( $links_list_3[ $key ]['website_street'] );
+							echo '<br>' . esc_attr( $links_list_3[ $key ]['website_district'] );
 					}
 					echo '</a></td> </tr>';
 				}
@@ -325,13 +278,7 @@ echo '</div>';
 		}
 	} else {
 		/** // Display the opening, main category list  */
-echo '<div style="width: 300px;
-    position: absolute;
-    left: 50%;
-    margin-left: -150px; /*half of width*/">';		
-include('included_menu.php');
 
-echo '</div>';
 		echo '
 <table id="mn_main_cats_table"><caption>Main Categories</caption><tbody><form name="main_category_form" method="post" action=""> ' . wp_nonce_field( 'main_cat_action', 'main_cat_nonce' ) . '<input type="hidden" name="category_id" />';
 		echo '<tr><td><a href="javascript:select_main_category(\'60\')">Accessories</a></td><td><a href="javascript:select_main_category(\'1307\')">Games</a></td></tr>';

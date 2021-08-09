@@ -85,7 +85,7 @@ opacity: 0.2; */
 }
 div#mn_main_container{
 /*the top level - add url login etc menu*/
- width: 1000px ;
+ width: 100% ;
   margin-left: auto ;
   margin-right: auto ;
 
@@ -94,7 +94,7 @@ color:black;*/
 }
 div#mn_main_menu_container{
 /*the top level - add url login etc menu*/
- width: 700px ;
+ width: 80% ;
   margin-left: auto ;
   margin-right: auto ;
 /*background-color: #000000;
@@ -102,7 +102,7 @@ color:black;*/
 }
 div#mn_subcat_container{
 /*the top level - add url login etc menu*/
- width: 700px ;
+ width: 80% ;
   margin-left: auto ;
   margin-right: auto ;
 /*background-color: #000000;
@@ -110,7 +110,7 @@ color:black;*/
 }
 div#mn_location_container{
 /*the top level - add url login etc menu*/
- width: 700px ;
+ width: 90% ;
   margin-left: auto ;
   margin-right: auto ;
 /*background-color: #000000;
@@ -118,7 +118,7 @@ color:black;*/
 }
 div#mn_results_table{
 /*the top level - add url login etc menu*/
- width: 500px ;
+ width: 90% ;
   margin-left: auto ;
   margin-right: auto ;
 /*background-color: #000000;
@@ -186,8 +186,8 @@ table#mn_location_table caption {
 
 table#mn_main_cats_table {
 /*1st page category list*/
-  table-layout: fixed ;
-  width: 100% ;
+  table-layout: auto ;
+  width: 100%;
   border-collapse: collapse ;
   border: 0px black solid ;
 }
@@ -202,7 +202,7 @@ table#mn_main_cats_table caption {
 
 table#mn_results_table {
 /*2nt page results/ads list*/
-  table-layout: fixed ;
+  table-layout: auto ;
   width: 100% ;
   border-collapse: collapse ;
   border: 1px black solid ;
@@ -553,5 +553,62 @@ only screen and (max-width: 760px),
 .column-left{ float: left; width: 43.333%; }
 .column-right{ float: right; width: 43.333%; }
 .column-center{ display: inline-block; width: 13.333%; text-align: center; }
+
+.sidebar-nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidebar-nav .metismenu {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-nav .metismenu li + li {
+  margin-top: 5px;
+}
+
+.sidebar-nav .metismenu li:first-child {
+  margin-top: 5px;
+}
+.sidebar-nav .metismenu li:last-child {
+  margin-bottom: 5px;
+}
+
+.sidebar-nav .metismenu > li {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.sidebar-nav .metismenu a {
+  position: relative;
+  display: block;
+  padding: 13px 15px;
+  color: #212529;
+  transition: all 0.3s ease-out;
+  text-decoration: none;
+}
+
+.sidebar-nav .metismenu ul a {
+  padding: 10px 15px 10px 30px;
+}
+
+.sidebar-nav .metismenu ul ul a {
+  padding: 10px 15px 10px 45px;
+}
+
+.sidebar-nav .metismenu a:hover,
+.sidebar-nav .metismenu a:focus,
+.sidebar-nav .metismenu a:active,
+.sidebar-nav .metismenu .mm-active > a {
+  color: #0c63e4;
+  text-decoration: none;
+}
+
+.sidebar-nav .metismenu .mm-active > a {
+  background: #e7f1ff;
+  border-radius: 3px;
+}
 </style>
 

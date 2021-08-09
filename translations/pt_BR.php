@@ -1,11 +1,9 @@
 <?php
-
 /**
 * Please note: we can use unencoded characters like ö, é etc here as we use the html5 doctype with utf8 encoding
 * in the application's header (in views/_header.php). To add new languages simply copy this file,
 * and create a language switch in your root files.
 */
-
 // login & registration classes
 define("MESSAGE_ACCOUNT_NOT_ACTIVATED", "Sua conta ainda não foi ativada. Favor clicar no link de confirmação enviado por email.");
 define("MESSAGE_CAPTCHA_WRONG", "Captcha incorreto!");
@@ -20,7 +18,6 @@ define("MESSAGE_EMAIL_SAME_LIKE_OLD_ONE", "Desculpe, este email é o mesmo do at
 define("MESSAGE_EMAIL_TOO_LONG", "Email não pode ter mais de 64 caracteres");
 define("MESSAGE_LINK_PARAMETER_EMPTY", "Link vazio.");
 define("MESSAGE_LOGGED_OUT", "Você saiu..");
-
 // The "login failed"-message is a security improved feedback that doesn't show a potential attacker if the user exists or not
 define("MESSAGE_LOGIN_FAILED", "Login falhou.");
 define("MESSAGE_OLD_PASSWORD_WRONG", "Sua senha antiga está incorreta.");
@@ -48,7 +45,6 @@ define("MESSAGE_USERNAME_EMPTY", "Campo nome de usuário está vazio");
 define("MESSAGE_USERNAME_EXISTS", "Desculpe, este nome de usuário já foi utilizado. Escolha outro.");
 define("MESSAGE_USERNAME_INVALID", "Nome de usuário fora do padrão: somente a-Z e números são permitidos, 2 a 64 caracteres");
 define("MESSAGE_USERNAME_SAME_LIKE_OLD_ONE", "Desculpe, o nome de usuário é o mesmo atual. Escolha outro.");
-
 // views
 define("WORDING_BACK_TO_LOGIN", "Voltar ao Login");
 define("WORDING_CHANGE_EMAIL", "Alterar email");

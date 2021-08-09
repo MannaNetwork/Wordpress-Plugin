@@ -5,6 +5,7 @@ if($response['body'] == "Found website")
 
 echo '<h3 style="color:red;">We have detected that your plugin is not configured. See the following screenshot to see where to locate the plugin configuration form:
 </h3>';
+//website is registered. Check that the website you configured as the agent url in the wp-content/plugins/mannanetwork/agent_config.php  page is, indeed, where you actually registered at. </h3><h3>You configured your agent url to be '.AGENT_URL;
 
 echo '<h3>Please do not hesitate to contact us if you have any problems, questions, concerns or suggestions!</h3>';
 
