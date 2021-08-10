@@ -550,9 +550,9 @@ only screen and (max-width: 760px),
 	td:nth-of-type(10):before { content: "Arbitrary Data"; }
 }
 
-.column-left{ float: left; width: 43.333%; }
-.column-right{ float: right; width: 43.333%; }
-.column-center{ display: inline-block; width: 13.333%; text-align: center; }
+.column-left{ float: left; width: auto; }
+.column-right{ float: right; width: auto; }
+.column-center{ display: inline-block; width: 300px; margin:auto; text-align: center; }
 
 .sidebar-nav ul {
   padding: 0;
@@ -610,5 +610,6 @@ only screen and (max-width: 760px),
   background: #e7f1ff;
   border-radius: 3px;
 }
+
 </style>
 

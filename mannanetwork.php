@@ -76,7 +76,7 @@ else
 $show_reports = 'false';
 }
 
-if($_GET['plugin_is_registered']==='yes'){
+if(isset($_GET['plugin_is_registered']) && $_GET['plugin_is_registered']==='yes'){
 $show_reports = 'true';
 }
 else
@@ -195,9 +195,7 @@ if ( strpos( get_site_url(), 'https://' ) !== false ) {
 	} else {
 		
 		
-	echo '<br>$response[\'body\']<br>';	
-	print_r($response['body']);	
-		
+			
  $mn_reg_status = json_decode($response['body'], true);
  
 	
@@ -245,9 +243,14 @@ if ( strpos( get_site_url(), 'https://' ) !== false ) {
 	} else {
 		
 		
-	echo '<br><br>';	
-	print_r($response['body']);	
-	
+		$mn_reg_status = json_decode($response['body'], true);
+if($mn_reg_status !=="empty"){
+//returns  Array ( [0] => Array ( [remote_lnk_num] => 1 [0] => 1 [agent_ID] => 25 [1] => 25 [agent_url] => orlandoreferralgroup.com [2] => orlandoreferralgroup.com [foldername] => manna_network [3] => manna_network ) ) 
+
+	$agent_ID = $mn_reg_status[0]['agent_id'];
+	$remote_lnk_num = $mn_reg_status[0]['remote_link_id'];
+	//$foldername = $mn_reg_status[0]['foldername'];
+	}
 	}
 }
 }//close 2nd if

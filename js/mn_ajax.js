@@ -162,13 +162,13 @@ function updategoButton(submitted_category, submitted_regional_num, nonce, origi
     var mycatarr = submitted_category.split(":");
     }
 if (submitted_regional_num === 'false' ) {
-var inserturl = '<a href="?gocat=' + mycatarr[1] + '&tregional_num=0' + '&main_cat_nonce=' + nonce +'"><h4>GO</h4></a><div style="width:50px; margin:auto;"><a href="?get_filters_info=true" target="_blank" onClick="window.open(\'?get_filters_info=true\',\'pagename\',\'resizable,height=600,width=800\'); return false;"><img height="42" width="42" src="../wp-content/plugins/manna-network/images/green_arrow.png"></a></div>';
+var inserturl = '<a href="?gocat=' + mycatarr[1] + '&tregional_num=0' + '&main_cat_nonce=' + nonce +'"><div class="data-container"><span class="btn">GO1</span></div></a><div style="width:50px; margin:auto;"><a href="?get_filters_info=true" target="_blank" onClick="window.open(\'?get_filters_info=true\',\'pagename\',\'resizable,height=600,width=800\'); return false;"><img height="42" width="42" src="../wp-content/plugins/manna-network/images/green_arrow.png"></a></div>';
 }
 else
 {
 var myregarr = submitted_regional_num.split(":");
 //the category_id submitted to delete all levels MUST BE the category id of the page currently displayed to them (NOT the category currently selected by the dropdown
-var inserturl = '<a href="?gocat=' + mycatarr[1] + '&tregional_num=' + myregarr[1] + '&main_cat_nonce=' + nonce +'"><h4>GO</h4></a><div style="width:300px; margin:auto;"><div style="width:50px; margin:auto;"><a href="?get_filters_info=true" target="_blank" onClick="window.open(\'?get_filters_info=true\',\'pagename\',\'resizable,height=600,width=800\'); return false;"><img height="42" width="42" src="../wp-content/plugins/manna-network/images/green_arrow.png"></a></div>';
+var inserturl = '<a href="?gocat=' + mycatarr[1] + '&tregional_num=' + myregarr[1] + '&main_cat_nonce=' + nonce +'"><button>GO2</button></a><div style="width:300px; margin:auto;"><div style="width:50px; margin:auto;"><a href="?get_filters_info=true" target="_blank" onClick="window.open(\'?get_filters_info=true\',\'pagename\',\'resizable,height=600,width=800\'); return false;"><img height="42" width="42" src="../wp-content/plugins/manna-network/images/green_arrow.png"></a></div>';
 }
 }
 else
@@ -181,12 +181,12 @@ if (submitted_regional_num.indexOf(":") > 0) {
 	//IF so, we need to find, copy and save the existing argument 
 	// the needed value will be var twoargumentssplit[0];
 	var myregarr = submitted_regional_num.split(":");
-	var inserturl = '<a href="?' + twoargumentssplit[0] + '&tregional_num=' + myregarr[1] + '&main_cat_nonce=' + nonce +'"><h4>GO</h4></a>';
+	var inserturl = '<a href="?' + twoargumentssplit[0] + '&tregional_num=' + myregarr[1] + '&main_cat_nonce=' + nonce +'"><button>GO3</button></a>';
 	}
 else
 {
 var mycatarr = submitted_category.split(":");
-var inserturl = '<a href="?gocat=' + mycatarr[1] + '&' + twoargumentssplit[1] + '&main_cat_nonce=' + nonce +'"><h4>GO</h4></a>';
+var inserturl = '<a  href="?gocat=' + mycatarr[1] + '&' + twoargumentssplit[1] + '&main_cat_nonce=' + nonce +'"><button>GO4</button></a>';
 }
 }
   document.getElementById("goLink").innerHTML=inserturl; 
