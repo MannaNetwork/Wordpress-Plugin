@@ -28,7 +28,16 @@ function mytheme_enqueue_style() {
 }
 add_action( 'wp_enqueue_scripts', 'mytheme_enqueue_style' );
 
+/*
+try enqueue scripts one more time
+function themeslug_enqueue_script() {
+    wp_enqueue_script( 'my-js', 'filename.js', false );
+}
 
+add_action( 'wp_enqueue_scripts', 'themeslug_enqueue_script' );
+
+
+*/
 
 function mannanetwork_create_menu() {
 	/**
@@ -161,6 +170,7 @@ nestedAccordion.init("nested","h3",1,-1,"acc-selected");
 </script>
 
 <?php
+echo '<a href="http://test-domain.com/public_html/wp-content/plugins/manna-network/reset_options.php">Reset Configurations</a>';
 exit();
 }
 else //is in configuration mode
