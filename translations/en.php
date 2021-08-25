@@ -88,6 +88,7 @@ define("MESSAGE_USERNAME_EMPTY", "<h3>Username field was empty</h3>");
 define("MESSAGE_USERNAME_EXISTS", "<h3>Sorry, that username is already taken. Please choose another one.</h3>");
 define("MESSAGE_USERNAME_INVALID", "<h3>Username does not fit the name scheme: only a-Z and numbers are allowed, 2 to 64 characters</h3>");
 define("MESSAGE_USERNAME_SAME_LIKE_OLD_ONE", "<h3>Sorry, that username is the same as your current one. Please choose another one.</h3>");
+define("MESSAGE_RESEND_EMAIL", "Configuration Status</h2><h3 style="color:red;">We were not able to detect that you have responded to the email verification email that we sent you.  We searched our database registrations for your website "'.$http_host.'" and found it is registered as an advertiser in the Manna Network but the system is awaiting your verification of your email address. <b>You need to click the link in the email we sent you!</b>. ALSO, if you don\'t find the confirmation email in your inbox then check your spam folder (and be sure to whitelist those emails in your email client). ");
 
 
 // views
