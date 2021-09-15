@@ -88,8 +88,9 @@ define("MESSAGE_USERNAME_EMPTY", "<h3>Username field was empty</h3>");
 define("MESSAGE_USERNAME_EXISTS", "<h3>Sorry, that username is already taken. Please choose another one.</h3>");
 define("MESSAGE_USERNAME_INVALID", "<h3>Username does not fit the name scheme: only a-Z and numbers are allowed, 2 to 64 characters</h3>");
 define("MESSAGE_USERNAME_SAME_LIKE_OLD_ONE", "<h3>Sorry, that username is the same as your current one. Please choose another one.</h3>");
-define("MESSAGE_RESEND_EMAIL", "Configuration Status</h2><h3 style="color:red;">We were not able to detect that you have responded to the email verification email that we sent you.  We searched our database registrations for your website "'.$http_host.'" and found it is registered as an advertiser in the Manna Network but the system is awaiting your verification of your email address. <b>You need to click the link in the email we sent you!</b>. ALSO, if you don\'t find the confirmation email in your inbox then check your spam folder (and be sure to whitelist those emails in your email client). ");
+define("MESSAGE_RESEND_EMAIL", "Configuration Status</h2><h3 style='color:red;'>We were not able to detect that you have responded to the email verification email that we sent you.  We searched our database registrations for your website $http_host and found it is registered as an advertiser in the Manna Network but the system is awaiting your verification of your email address. <b>You need to click the link in the email we sent you!</b>. If for some reason you don\'t find the confirmation email in your inbox then be sure to check your spam folder (and [if there] be sure to whitelist emails from that sender in your email client). <h3 style='color:red;'>If you need the verification email to be resent then click the button below.</h3>");
 
+define("MESSAGE_NO_REGISTRATION", "Configuration Status</h2><h3 style='color:red;'>We were not able to detect that you have registered as an advertiser?.  We searched our database registrations for your website $http_host and were not able to find it as an advertiser in the Manna Network <b>You need to  <h3 style='color:red;'>You need sign up as an advertiser (free) in order to configure the plugin properly. Either return to the website that turned you on to The Manna Network and register there (in their M.M. Directory) or visit <a target='_blank' href='https://manna-network.com/register'>https://manna-network.com/register</a> to find a registration site </h3>");
 
 // views
 define("WORDING_BACK_TO_LOGIN", "<h3>Back to Login Page</h3>");
@@ -163,20 +164,6 @@ define("MORE_INFO_PAGE", '<div  style="width: 500px;  margin-left: auto ;
 
 define("MORE_INFO_PAGEEND", 'Click Here</a></div>');
 
-
-/*
-define("EXPANDED_AJAX_NUM_LINKS", "The total number of free, non-paying links, <b>PLUS</b> paying \"Demo coin\" links <b>PLUS</b> paying BitcoinSV links listed ahead of your's in this category is: ");
-define("EXPANDED_AJAX_FREE_PAGE_COUNT1", "At 20 links displayed per page, your free link will be displayed on page ");
-define("EXPANDED_AJAX_FREE_PAGE_COUNT2", " at the ");
-define("EXPANDED_AJAX_FREE_PAGE_COUNT3", "  position. ");
-define("EXPANDED_AJAX_MIN_DEMO_BID1", "<p>You will receive free \"Demo Coin\" in the amount of ");
-define("EXPANDED_AJAX_MIN_DEMO_BID2", " (which represents approximately $100 worth of free advertising). You can use it to purchase a \"price slot\" and position your link ahead of all free listings and ahead of other, lower paying demo coin bidders (if you choose). The minimum bid (enough to place your link ahead of all free links) is approximately $5 (nominal value) worth of demo coin or: ");
-define("EXPANDED_AJAX_MIN_BCH_BID1", "<p>There are ");
-define("EXPANDED_AJAX_MIN_BCH_BID2", " BitcoinSV paying advertisers in this category. To be listed ahead of theirs, make a deposit of BitcoinSV and purchase a price slot at whatever level among the BitcoinSV links you wish. The lowest price is ");
-define("EXPANDED_AJAX_MIN_BCH_BID3", " (approximately only around $5 worth a month). That payment will display your link ahead of all free and all demo paying advertisers.");
-define("EXPANDED_AJAX_MIN_BCH_BID4", "<p> The hightest bidder currently is  ");
-define("EXPANDED_AJAX_MIN_BCH_BID5", " and to acquire the top display position will require you to select any of the higher price slots, with the next highest being one-and-one-half times the current top price slot ");
-*/
 
 define("WORDING_AJAX_FREE_POSITION0", "<ul><li><u><b>Free sites</b></u> are listed and ordered according to their seniority (i.e. the date/time they registered).
 </li><li><u><b>\"Demo coins\"</b></u>  are given to each new listing in the ad network (you will receive ");
@@ -294,4 +281,4 @@ or services you provide or, if yours is a blog site then enter
 something describing your main topic.</p>");
 define("REG_BLOKT_TITLE_MOUSEOVER", "Title Hint");
 
-
+define("NO_CONFIG", '<h1>Click the "Manna Network" link in your Dashboard to configure the plugin. </h1>');

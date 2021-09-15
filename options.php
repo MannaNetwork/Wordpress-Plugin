@@ -1,5 +1,6 @@
 <?php
 $root = dirname(dirname(dirname(dirname( __FILE__, 1 ))));
+echo $root;
 
 if (file_exists($root.'/wp-load.php')) {
 // WP 2.6

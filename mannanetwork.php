@@ -18,337 +18,527 @@
  * Text Domain:       mannanetwork
  * Domain Path:       /languages
  */
+ //echo 'plugin_dir_url( __DIR__ ) = ', plugin_dir_url( __DIR__ );
 function mytheme_enqueue_style() {
-	/**
+  /**
 * Enqueue CSS
 */
-	wp_enqueue_style( 'mytheme-style', plugin_dir_url( __DIR__ ) . 'manna-network/css/styles.css', '', '1.01' );
+  wp_enqueue_style( 'mytheme-style', plugin_dir_url( __DIR__ ) . 'manna-network/css/styles.css', '', '1.01' );
 
 }
 add_action( 'wp_enqueue_scripts', 'mytheme_enqueue_style' );
 
-/*
-try enqueue scripts one more time
-function themeslug_enqueue_script() {
-    wp_enqueue_script( 'my-js', 'filename.js', false );
-}
 
-add_action( 'wp_enqueue_scripts', 'themeslug_enqueue_script' );
-
-
-*/
 
 function mannanetwork_create_menu() {
-	/**
+  /**
 * Create new top-level menu
 */
-	add_menu_page( 'MannaNetwork', 'MannaNetwork', 'administrator', __DIR__, 'mannanetwork_settings_page', get_stylesheet_directory_uri( 'stylesheet_directory' ) . '/images/media-button-other.gif' );
+  add_menu_page( 'MannaNetwork', 'MannaNetwork', 'administrator', __DIR__, 'mannanetwork_settings_page', get_stylesheet_directory_uri( 'stylesheet_directory' ) . '/images/media-button-other.gif' );
 add_submenu_page( 'MannaNetwork', 'MannaNetwork', 'administrator', __DIR__, 'mannanetwork_settings_page', get_stylesheet_directory_uri( 'stylesheet_directory' ) . '/images/media-button-other.gif' );
 
-	/* Call register settings function */
-	add_action( 'admin_init', 'register_manna_member' );
+  /* Call register settings function */
+  add_action( 'admin_init', 'register_manna_member' );
 }
 
  
 add_action( 'admin_menu', 'mannanetwork_create_menu' );
 
 function register_manna_member() {
-	/**
-	* Register our settings
-	*/
-	register_setting( 'manna_member-group', 'mn_local_lnk_num' );
-	register_setting( 'manna_member-group', 'mn_agent_id' );
-	register_setting( 'manna_member-group', 'mn_agent_url' );
-	register_setting( 'manna_member-group', 'mn_agent_folder' );
-	register_setting( 'manna_member-group', 'installer_id' );
+  /**
+  * Register our settings
+  */
+  register_setting( 'manna_member-group', 'mn_local_lnk_num' );
+  register_setting( 'manna_member-group', 'mn_agent_id' );
+  register_setting( 'manna_member-group', 'mn_agent_url' );
+  register_setting( 'manna_member-group', 'mn_agent_folder' );
+  register_setting( 'manna_member-group', 'installer_id' );
 /* note - this is used in the registration form instead of $_SESSION */
-	register_setting( 'manna_member-group', 'captcha' );
+  register_setting( 'manna_member-group', 'captcha' );
 /* non-menu (like  hidden var) - */
 register_setting( 'manna_member-group', 'plugin_is_registered' );
-	
+  
 }
 
 function mannanetwork_settings_page() {
-	/**
-	* Create our options/settings
-	*/
+  /**
+  * Create our options/settings
+  */
 
-//Install simple_counter-2021-08-23.tar.gz to count visits to directory page (only used by plugin installer and not the advertisers UNLESS I have the installers do a cron to MN to tally them all).
+//First, check mn in the temp and approved tables for the url
+//XXXXXXXXXXXXXXXXXXXXXX New Code XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+print_r($_GET);
 
-if(array_key_exists("fstate", $_GET)&&$_GET['fstate']=='reconfigure'){
+If(get_option( 'plugin_is_registered' ) === 'yes' ){
 
-$default_value="";
-update_option('mn_agent_id',"");
-update_option('mn_agent_url',"");
-update_option('mn_agent_folder',"") ;
-update_option('mn_local_lnk_num',"");
-update_option('plugin_is_registered',"");
-		echo '<h2>Configurations have been reset - Click the MannaNetwork link in your dashboard to continue</h2>';
-		unset($_GET['fstate']);
-		exit();
-		}
-		
-elseif(get_option( 'plugin_is_registered' ) === 'yes' ){
-
-include('accordian/packed.js');
-include('accordian/script.js');
-include('accordian/style.css');
-
-echo '<div id="options">
-	<a href="javascript:parentAccordion.pr(1)">Exand All</a> | <a href="javascript:parentAccordion.pr(-1)">Collapse All</a>
-</div>
-<ul class="acc" id="acc">
-	<li>
-		<h3>Manna Network Member\'s Reports</h3>
-		<div class="acc-section">
-			<div class="acc-content">
-				<ul class="acc" id="nested">
-					<li>
-						<h3>Registered Advertisers</h3>
-						<div class="acc-section">
-							<div class="acc-content">
-								Donec elementum lobortis lorem. Sed aliquet lacus vitae nibh. Sed ullamcorper pharetra augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							</div>
-						</div>
-					</li>
-					<li>
-						<h3>Advertisers Upgraded To Membership</h3>
-						<div class="acc-section">
-							<div class="acc-content">
-								Vestibulum blandit mauris elementum mauris.
-							</div>
-						</div>
-					</li>
-					<li>
-						<h3>Income</h3>
-						<div class="acc-section">
-							<div class="acc-content">
-								Morbi felis libero, porta non, sagittis ac, consectetur in, sem.
-							</div>
-						</div>
-					</li>
-				</ul>				
-			</div>
-		</div>
-	</li><li>
-		<h3>Manna Network Network Stats</h3>
-		<div class="acc-section">
-			<div class="acc-content">
-				To initialize an accordion use the following code:<br /><br />
-				<code>
-					var accordion=new TINY.accordion.slider(&quot;accordion&quot;);<br />
-					accordion.init(&quot;accordion&quot;,&quot;h3&quot;,false,0,&quot;selected&quot;);
-				</code><br /><br />
-				You must create a new accordion object before initialization. The parameter taken by accordion.slider is the variable name used for the object. The object.init function takes 5 parameters: the id of the accordion ul, the header element tag, whether the panels should be expandable independently (optional), the index of the initially expanded section (optional) and the class for the active header (optional).
-			</div>
-		</div>
-	</li>
-	<li>
-		<h3>Support & Training</h3>
-		<div class="acc-section">
-			<div class="acc-content">
-				This script is provided as-is with no warranty or guarantee. It is available at no cost for any project, non-commercial or commercial. Paid support is available by <a href="http://www.leigeber.com/contact/">clicking here</a>
-			</div>
-		</div>
-	</li>
-</ul> 
-
-<script type="text/javascript" src="script.js"></script>
-
-<script type="text/javascript">
-
-var parentAccordion=new TINY.accordion.slider("parentAccordion");
-parentAccordion.init("acc","h3",0,0);
-
-var nestedAccordion=new TINY.accordion.slider("nestedAccordion");
-nestedAccordion.init("nested","h3",1,-1,"acc-selected");
-
+echo '<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+  new MetisMenu(\'#menu1\');
+  new MetisMenu(\'#menu2\', {
+    toggle: false
+  });
+  new MetisMenu(\'#menu3\');
+});
 </script>';
-echo '<form action="" id="reconfigure" name="reconfigure" method="GET">';
-echo '<input type=button onClick="location.href=\'../wp-admin/admin.php?page=manna-network&fstate=reconfigure\'" value="Reconfigure Settings" >';
-echo '</form>';
 
+echo 'Place reports here
+- Number of advertisers registered
+- Number of directories installed by them
+- Number of paying advertisers
+-- BSV
+-- Demo coin
+plugin_is_registered
+
+Place a reconfigure"" button here too (probably only used IF they upgrade to enterprise level)';
+echo '
+<!-- Inspiration: https://dribbble.com/shots/4397812-Click-Me -->
+
+<a href="?reconfigure=true" class="cta">
+  <span>Click me</span>
+  <svg width="13px" height="10px" viewBox="0 0 13 10">
+    <path d="M1,5 L11,5"></path>
+    <polyline points="8 1 12 5 8 9"></polyline>
+  </svg>
+</a>';
+
+?>
+<div class="row">
+  <div class="col-md-3">
+    <nav class="sidebar-nav">
+    <ul class="metismenu" id="menu1">
+      <li>
+        <a class="has-arrow" href="#" aria-expanded="false">
+          <span class="fa fa-fw fa-github fa-lg"></span>
+          metisMenu
+        </a>
+        <ul>
+          <li>
+            <a href="https://github.com/onokumus/metismenujs">
+              <span class="fa fa-fw fa-code-fork"></span> Fork
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/onokumus/metismenujs">
+              <span class="fa fa-fw fa-star"></span> Star
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/onokumus/metismenujs/issues">
+              <span class="fa fa-fw fa-exclamation-triangle"></span> Issues
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="has-arrow" href="#" aria-expanded="false">Menu 0</a>
+        <ul>
+          <li>
+            <a href="#">item 0.1</a>
+          </li>
+          <li>
+            <a href="#">item 0.2</a>
+          </li>
+          <li>
+            <a href="http://onokumus.com">onokumus</a>
+          </li>
+          <li>
+            <a href="#">item 0.4</a>
+          </li>
+        </ul>
+      </li>
+      <li id="removable">
+        <a class="has-arrow" href="#" aria-expanded="false">Menu 1</a>
+        <ul>
+          <li>
+            <a href="#">item 1.1</a>
+          </li>
+          <li>
+            <a href="#">item 1.2</a>
+          </li>
+          <li>
+            <a class="has-arrow" href="#" aria-expanded="false">Menu 1.3</a>
+            <ul>
+              <li>
+                <a href="#">item 1.3.1</a>
+              </li>
+              <li>
+                <a href="#">item 1.3.2</a>
+              </li>
+              <li>
+                <a href="#">item 1.3.3</a>
+              </li>
+              <li>
+                <a href="#">item 1.3.4</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">item 1.4</a>
+          </li>
+          <li>
+            <a class="has-arrow" href="#" aria-expanded="false">Menu 1.5</a>
+            <ul>
+              <li>
+                <a href="#">item 1.5.1</a>
+              </li>
+              <li>
+                <a href="#">item 1.5.2</a>
+              </li>
+              <li>
+                <a href="#">item 1.5.3</a>
+              </li>
+              <li>
+                <a href="#">item 1.5.4</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="has-arrow" href="#" aria-expanded="false">Menu 2</a>
+        <ul>
+          <li>
+            <a href="#">item 2.1</a>
+          </li>
+          <li>
+            <a href="#">item 2.2</a>
+          </li>
+          <li>
+            <a href="#">item 2.3</a>
+          </li>
+          <li>
+            <a href="#">item 2.4</a>
+          </li>
+        </ul>
+      </li>
+    </ul>    </nav>
+  </div>
+  <!-- /.col-md-3 -->
+  <div class="col-md-9">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Auto Collapse <small>default</small></h5>
+<pre><code class="language-javascript"><span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">"DOMContentLoaded"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) </span>{
+  <span class="hljs-keyword">new</span> MetisMenu(<span class="hljs-string">'#menu1'</span>);
+});
+</code></pre>
+
+      </div>
+    </div>
+  </div>
+  <!-- /.col-md-9 -->
+</div>
+<!-- /.row -->
+
+<hr>
+
+<?php
 exit();
 }
 else //is in configuration mode
 {
-	//1st, check if is in bridge table - means the site has also been approved
-$file = 'http://exchange.manna-network.com/incoming/get_bridge_row.php';
-if ( strpos( get_site_url(), 'https://' ) !== false ) {
-	$http_host = str_replace( 'https://', '', get_site_url() );
-} elseif ( strpos( get_site_url(), 'http://' ) !== false ) {
-	$http_host = str_replace( 'http://', '', get_site_url() );
-}
-	$response = wp_remote_post(
-		$file,
-		array(
-			'method'      => 'POST',
-			'timeout'     => 45,
-			'redirection' => 5,
-			'httpversion' => '1.0',
-			'blocking'    => true,
-			'headers'     => array(),
-			'body'        => array(
-				'http_host' => $http_host,
-			),
-			'cookies'     => array(),
-		)
-	);
-	if ( is_wp_error( $response ) ) {
-		$error_message = esc_attr( $response->get_error_message() );
-		echo 'Something went wrong 184: (' . esc_attr( $error_message ) . ' )';
-	} else {
- $mn_reg_status = json_decode($response['body'], true);
-	
-if($mn_reg_status !=="empty"){
-	$agent_ID = $mn_reg_status[0]['agent_ID'];
-	$remote_lnk_num = $mn_reg_status[0]['remote_lnk_num'];
-	}
-	else
-	{
-	//if (no result from first query)
-	//Check if is in tempusers
+echo 'The current logged in user ID is: '.get_current_user_id();
+    echo '<br>line 267 in mannanetwork - opening get bridge row_m';
+  //1st, check if is in bridge table - means the site has also been approved
+    $file = 'http://exchange.manna-network.com/incoming/get_bridge_row_m.php';
+        if ( strpos( get_site_url(), 'https://' ) !== false ) {
+        $http_host = str_replace( 'https://', '', get_site_url() );
+        } elseif ( strpos( get_site_url(), 'http://' ) !== false ) {
+        $http_host = str_replace( 'http://', '', get_site_url() );
+        }
+    echo '<br>line 275 in mmannanetwork before remote post and http_host sent to exchange is ', $http_host;
+  $response = wp_remote_post(
+    $file,
+    array(
+      'method'      => 'POST',
+      'timeout'     => 45,
+      'redirection' => 5,
+      'httpversion' => '1.0',
+      'blocking'    => true,
+      'headers'     => array(),
+      'body'        => array(
+        'http_host' => $http_host,
+      ),
+      'cookies'     => array(),
+    )
+  );
 
-	$file = 'http://exchange.manna-network.com/incoming/get_temp_row.php';
-	if ( strpos( get_site_url(), 'https://' ) !== false ) {
-		$http_host = str_replace( 'https://', '', get_site_url() );
-	} elseif ( strpos( get_site_url(), 'http://' ) !== false ) {
-		$http_host = str_replace( 'http://', '', get_site_url() );
-	}
+  if ( is_wp_error( $response ) ) {
+    $error_message = esc_attr( $response->get_error_message() );
+    echo 'Something went wrong 102: (' . esc_attr( $error_message ) . ' )';
+  } else {
+        echo '<br> LINE 300 - In mannanetwok.php line 301 $response[body] from exchange.manna-network.com/incoming/get bridge row_m.php';
+        $mn_reg_status = json_decode($response['body'], true);
+        echo '<br><br>$response[\'body\'] = ';  
+        print_r($response['body']); 
+  require_once('translations/en.php');
+            if($mn_reg_status !=="empty"){
+            echo '<br>Passed "if !empty" ---- ';
+            print_r($mn_reg_status ); 
+            //returns  Array ( [0] => Array ( [remote_lnk_num] => 1 [0] => 1 [agent_ID] => 25 [1] => 25 [agent_url] => orlandoreferralgroup.com [2] => orlandoreferralgroup.com [foldername] => manna_network [3] => manna_network ) ) 
+            echo '  Create vars for each item displayed in form - fill values from bridge table<br>
+            For example';
+            $agent_ID = $mn_reg_status['agent_id'];
+            $remote_lnk_num = $mn_reg_status['remote_lnk_num'];
+            $remote_user_id = $mn_reg_status['remote_user_id'];
+            //$foldername = $mn_reg_status[0]['foldername'];
 
-	$response = wp_remote_post(
-		$file,
-		array(
-			'method'      => 'POST',
-			'timeout'     => 45,
-			'redirection' => 5,
-			'httpversion' => '1.0',
-			'blocking'    => true,
-			'headers'     => array(),
-			'body'        => array(
-				'http_host' => $http_host,
-			),
-			'cookies'     => array(),
-		)
-	);
-	if ( is_wp_error( $response ) ) {
-		$error_message = esc_attr( $response->get_error_message() );
-		echo 'Something went wrong 221: (' . esc_attr( $error_message ) . ' )';
-	} else {
-		$mn_reg_status = json_decode($response['body'], true);
-	
-	if($mn_reg_status !=="empty"){
-	//returns  Array ( [0] => Array ( [remote_lnk_num] => 1 [0] => 1 [agent_ID] => 25 [1] => 25 [agent_url] => orlandoreferralgroup.com [2] => orlandoreferralgroup.com [foldername] => manna_network [3] => manna_network ) ) 
+            echo '<br><br>line 316';
+            echo '<br>$agent_ID = ', $agent_ID;
+            $file = 'http://exchange.manna-network.com/incoming/install_get_agent_url_folder.php';
+            $response = wp_remote_post(
+            $file,
+            array(
+      'method'      => 'POST',
+      'timeout'     => 45,
+      'redirection' => 5,
+      'httpversion' => '1.0',
+      'blocking'    => true,
+      'headers'     => array(),
+      'body'        => array(
+        'agent_ID' => $agent_ID,
+      ),
+      'cookies'     => array(),
+    )
+  );
 
-	$agent_ID = $mn_reg_status[0]['agent_id'];
-	$remote_lnk_num = $mn_reg_status[0]['remote_link_id'];
-	//$foldername = $mn_reg_status[0]['foldername'];
-	}
-	else
-	{
-	//put new curl to check email verification here
-	include('getadvertiseragentbridge.php');
-	if($agent_url  !== 'advertiser not found'){
-	include('translations/email_not_verified.php');
-	}else{
-	// end new curl code
-	include('translations/en_no_registration.php');
-	exit();
-	}
-	}
-	}
-}
-}//close 2nd if
+        if ( is_wp_error( $response ) ) {
+            $error_message = esc_attr( $response->get_error_message() );
+            echo 'Something went wrong 337: (' . esc_attr( $error_message ) . ' )';
+        } else {
+                            //$mn_data = esc_attr( $response['body'] ) ;
+                    $mn_data =  $response['body']  ;
+                    $agent_decode = json_decode($response['body'], true);
+                    echo '<br><br>$response[\'body\'] = ';  
+                    print_r($response['body']); 
+                echo '<br><br>$agent_decode = ';  
+                    print_r($agent_decode);
+
+                    $mn_agent_url =$agent_decode[0]['agent_url'];
+                    $mn_agent_folder = $agent_decode[0]['foldername'];
+                    echo '<br><br>line 349';
+                echo '<br>$mn_agent_url = ', $mn_agent_url;
+                echo '<br><br>line 351';
+                echo '<br>$mn_agent_folder = ',$mn_agent_folder;
+                echo '<br>$remote_user_id = ',$remote_user_id;
+                echo '</h3><br> Now insert the agent url into curl next file link  ';
+                $file     = 'https://'.$mn_agent_url.'/'.$mn_agent_folder.'/manna-network/incoming/get_users_registration_info.php';
+                echo '<br>curl line 357 - file link = ', $file;
+                echo '<br>curl line 358 - $remote_user_id = ', $remote_user_id;
+                //echo '<br>curl line 44 - http_host = ', $http_host;
+                $response = wp_remote_post(
+                    $file,
+                    array(
+                        'method'      => 'POST',
+                        'timeout'     => 45,
+                        'redirection' => 5,
+                        'httpversion' => '1.0',
+                        'blocking'    => true,
+                        'headers'     => array(),
+                        'body'        => array(
+                            'user_id'       => $remote_user_id,
+                            'remote_link_url'       => $http_host,    
+                        ),
+                        'cookies'     => array(),
+                    )
+                );
+
+                        if ( is_wp_error( $response ) ) {
+                            $error_message = esc_attr( $response->get_error_message() );
+                            echo 'Something went wrong - email not verified: (' . esc_attr( $error_message ) . ' )';
+                        } else {
+                        echo '<h3>line 381 </h3>';
+                        $advertiser_info =  json_decode($response['body'], true);
+                        echo '<h1>Before IF line 352 $response[\'body\'] ' , $response['body'];
+
+                        echo '</h1>';
+                        echo '<h1>Before IF line 355 advertiser info ';
+                        print_r($advertiser_info);
+                        echo '</h1>';
+                        
+echo '<br>$advertiser_info[\'user_activation_hash\'] =', $advertiser_info['user_activation_hash'];
+
+ if(!empty($advertiser_info['user_activation_hash'])){
+ echo '<br>line 360 - passed if(!empty($advertiser_info[\'user_activation_hash\']', $advertiser_info['user_activation_hash'];
+ 
+ }
+                                if(!empty($advertiser_info['user_activation_hash'] )&& 0==$advertiser_info['user_active'])
+                            {
+                            echo '<h1>line 389 advertiser info ';
+                            print_r($advertiser_info);
+                            echo '</h1>';
+                            echo '<br>We need to display the no verif message and the link to the resend verif email button';
+                            
+                            echo '<h3>';
+                            echo MESSAGE_RESEND_EMAIL;
+                            echo '</h3>';
+
+                            echo '<form action="https://'.$mn_agent_url.'/'.$mn_agent_folder.'/manna-network/members/resend_email_verification.php" method="post">';
+
+                        echo '    <input type="hidden" name="resend" value="resend">
+                            <input type="hidden" name="remote_user_id" value="'. $advertiser_info['user_id'].'">
+                            
+                            
+                            <input type="hidden" name="user_activation_hash" value="'. $advertiser_info['user_activation_hash'].'">
+                            <input type="hidden" name="remote_user_email" value="'. $advertiser_info['user_email'].'">
+                            <input type="hidden" name="remote_user_url" value="'. $advertiser_info['website_url'].'">
+                            <p><input type="submit" value="Resend Email Verification"/></p>
+                            </form>
+                            <h3>After verifying email address, refresh this page.</h3>';
+                            exit();
+                            }
+                            else
+                            {
+                            echo '<h1>user is registered and has confirmed email</h1>';
+                           
+                    //if (no result from first queries)
+                    
+                    //Check if is in tempusers
+                if (array_key_exists ( "http_host" , $_POST ) AND isset($_POST["http_host"])) {
+                $http_host=$_POST['http_host'];
+                }
+                $file = 'http://exchange.manna-network.com/incoming/get_temp_row.php';
+                if ( strpos( get_site_url(), 'https://' ) !== false ) {
+                    $http_host = str_replace( 'https://', '', get_site_url() );
+                } elseif ( strpos( get_site_url(), 'http://' ) !== false ) {
+                    $http_host = str_replace( 'http://', '', get_site_url() );
+                }
+
+                    $response = wp_remote_post(
+                        $file,
+                        array(
+                            'method'      => 'POST',
+                            'timeout'     => 45,
+                            'redirection' => 5,
+                            'httpversion' => '1.0',
+                            'blocking'    => true,
+                            'headers'     => array(),
+                            'body'        => array(
+                                'http_host' => $http_host,
+                            ),
+                            'cookies'     => array(),
+                        )
+                    );
+
+                    if ( is_wp_error( $response ) ) {
+                        $error_message = esc_attr( $response->get_error_message() );
+                        echo 'Something went wrong 102: (' . esc_attr( $error_message ) . ' )';
+                    } else {
+                        
+                        
+                    echo '<br><br>';  
+                    print_r($response['body']); 
+                    
+                    
+                    
+                    
+                    
+                echo '  
+                Create vars for each item displayed in form - fill values from tempusers table
+                    For example
+                    $agent_id = $result[\'agent_id\'];
+                    $url = $result[\'url\'];
+                    etc';
+
+               
+
+if($mn_reg_status =="temp"){
+echo '<br>line 446 - is temp';
+$file = 'http://exchange.manna-network.com/incoming/install_get_temp.php';
+include('translations/en_is_temp.php');
+  $response = wp_remote_post(
+    $file,
+    array(
+      'method'      => 'POST',
+      'timeout'     => 45,
+      'redirection' => 5,
+      'httpversion' => '1.0',
+      'blocking'    => true,
+      'headers'     => array(),
+      'body'        => array(
+        'http_host' => $http_host,
+      ),
+      'cookies'     => array(),
+    )
+  );
+
+  if ( is_wp_error( $response ) ) {
+    $error_message = esc_attr( $response->get_error_message() );
+    echo 'Something went wrong 102: (' . esc_attr( $error_message ) . ' )';
+  } else {
+  //  $mn_data = esc_attr( $response['body'] ) ;
+$mn_data =  $response['body']  ;
+//echo '<br> In mannanetwok.phpline 170 $response[body] from exchange.manna-network.com/incoming/check_if_registered.php =', $mn_data;
+$decode = json_decode($mn_data, true);
+echo '<br>139 decode = :', $decode;
+print_r($decode);
+//echo '<br>139 decode = :', $decode;
+//echo '$decode remote_link_id = ', $decode['remote_link_id'];
+$php_login_user_id = $decode['user_id'];//the data base at MN records the wp_link id as the site's "remote" link id [i.e. it is remote to the MN system)
+$mn_agent_id = $decode['agent_id'];
+$mn_installer_id = $decode['installer_id'];
+
+
 
 //is approved
-$file = 'http://exchange.manna-network.com/incoming/install_get_agent_url_folder.php';
+$file = 'http://exchange.manna-network.com/incoming/install_get_bridge.php';
 if ( strpos( get_site_url(), 'https://' ) !== false ) {
-	$http_host = str_replace( 'https://', '', get_site_url() );
+  $http_host = str_replace( 'https://', '', get_site_url() );
 } elseif ( strpos( get_site_url(), 'http://' ) !== false ) {
-	$http_host = str_replace( 'http://', '', get_site_url() );
-}
-	$response = wp_remote_post(
-		$file,
-		array(
-			'method'      => 'POST',
-			'timeout'     => 45,
-			'redirection' => 5,
-			'httpversion' => '1.0',
-			'blocking'    => true,
-			'headers'     => array(),
-			'body'        => array(
-				'agent_ID' => $agent_ID,
-			),
-			'cookies'     => array(),
-		)
-	);
-
-	if ( is_wp_error( $response ) ) {
-		$error_message = esc_attr( $response->get_error_message() );
-		echo 'Something went wrong 274: (' . esc_attr( $error_message ) . ' )';
-	} else {
-		//$mn_data = esc_attr( $response['body'] ) ;
-	$mn_data =  $response['body']  ;
-	$agent_decode = json_decode($response['body'], true);
-	$mn_agent_url =$agent_decode[0]['agent_url'];
-	$mn_agent_folder = $agent_decode[0]['foldername'];
-	
+  $http_host = str_replace( 'http://', '', get_site_url() );
 }
 
-/* XXXXXXXXXXXXXXXXXX New confirm code XXXXXXXXXXXXXXXXXXXXXXX*/
-if(null !== $_GET['fstate'] && $_GET['fstate']=='confirmed'){
-update_option( 'plugin_is_registered' , 'yes');
-update_option( 'mn_local_lnk_num' , $_GET['mn_local_lnk_num']);
-update_option( 'mn_agent_id' , $_GET['mn_agent_id']);
-update_option( 'mn_agent_url', $_GET['mn_agent_url']);
-update_option( 'mn_agent_folder' , $_GET['mn_agent_folder']);
-echo '<h2>Your configuration settings have been saved and the web directory should now display properly. Visit the page where you inserted the plugin\'s shorttag (i.e. [mannanetwork]) to verify. Note: refreshing this page will display the reports section which will provide you with useful stats about the web directory usage and your commissions</h2>';
+  $response = wp_remote_post(
+    $file,
+    array(
+      'method'      => 'POST',
+      'timeout'     => 45,
+      'redirection' => 5,
+      'httpversion' => '1.0',
+      'blocking'    => true,
+      'headers'     => array(),
+      'body'        => array(
+        'http_host' => $http_host,
+      ),
+      'cookies'     => array(),
+    )
+  );
+
+        if ( is_wp_error( $response ) ) {
+            $error_message = esc_attr( $response->get_error_message() );
+            echo 'Something went wrong 102: (' . esc_attr( $error_message ) . ' )';
+        } else {
+            //$mn_data = esc_attr( $response['body'] ) ;
+    $decode =  json_decode($response['body'], true)  ;
+    $php_login_user_id =$decode['user_id'];
+    $mn_agent_id = $decode['agent_ID'];
+    $mn_installer_id = $decode['installer_id'];
+
+    }
+}
+}
+}
+}
+}
+ 
+                            }
+                            echo '<h1>last line (524) in if</h1>';
+                        }
+                        else
+                        {
+echo '<h1>Site is not registered</h1>';
+echo MESSAGE_NO_REGISTRATION;
 exit();
-}
-elseif(null !== $_GET['fstate'] && $_GET['fstate']=='submit_configs'){
-if(!isset($_GET['mn_local_lnk_num']) && !is_numeric($_GET['mn_local_lnk_num'])){
-$error_array[0] = "yes";
-} 
-if(!isset($_GET['mn_agent_id']) && !is_numeric($_GET['mn_agent_id'])){
-$error_array[1] = "yes";
-} 
-if(filter_var('https://'.$_GET['mn_agent_url'], FILTER_VALIDATE_URL)) 
-if(!isset($_GET['mn_agent_url']) && !filter_var('https://'.$_GET['mn_agent_url'], FILTER_VALIDATE_URL)) 
-{    
-$error_array[2] = "yes";
-} 
-if(!isset($_GET['mn_agent_folder']) ){
-$error_array[3] = "yes";
-}
-if (is_array($error_array) && in_array("yes", $error_array)){
-if($error_array[0]== 'yes'){ echo '<h3>You\'re link id number is misconfigured</h3>'; }
-if($error_array[1]== 'yes'){ echo '<h3>You\'re agent id number is misconfigured</h3>'; }
-if($error_array[2]== 'yes'){ echo '<h3>You\'re agent url is misconfigured</h3>'; }
-if($error_array[3]== 'yes'){ echo '<h3>You\'re agent folder name is misconfigured</h3>'; }
-}
-else
-{
-echo '<div style="width:75%;margin: 0 auto;"><h3>Your configuration "seems" correct (Important note: it is your responsibility to verify the accuracy of these settings. You can do so by visiting your Member Control Panel at <a  style="color:blue; text-decoration: underline;" target="_blank" href="https://'.$_GET['mn_agent_url'].'/'.$_GET['mn_agent_folder'].'/members">https://'.$_GET['mn_agent_url'].'/'.$_GET['mn_agent_folder'].'/members </a> and click the "Buy Better Placement" link of the site and page you installed the plugin on (there will only be one listing unless you\'ve entered multiple ads).</h3></div>';
-}
+                        }
+                        
+                    }
 
-echo '<div style="width:75%;margin: 0 auto; "><h3><a  style="color:blue; text-decoration: underline;" href="/wp-admin/admin.php?page=manna-network&&plugin_is_registered=yes">RETURN</a></h3></div><br>';
-echo '<form action="" id="confirm" name="confirm" method="GET">
-<br>If the following information is correct click the "Confirm" button';
-echo '<table><tr><td> mn_local_lnk_num </td><td>'.$_GET['mn_local_lnk_num'].'</td></tr><tr><td>mn_agent_id </td><td> '.$_GET['mn_agent_id']. '</td></tr><tr><td>mn_agent_url' .'</td><td>'.$_GET['mn_agent_url'].'</td></tr><tr><td>mn_agent_folder </td><td> '.$_GET['mn_agent_folder'].'</td></tr></table>';
-echo '<input type=button onClick="location.href=\'../wp-admin/admin.php?page=manna-network&mn_local_lnk_num='. esc_attr( $_GET['mn_local_lnk_num'] ).'&mn_agent_id='. esc_attr( $_GET['mn_agent_id'] ).'&mn_agent_url='.esc_attr( $_GET['mn_agent_url'] ).'&mn_agent_folder='. esc_attr( $_GET['mn_agent_folder'] ).'&fstate=confirmed\'" value="Confirm Configurations" >';
-echo '</form>';
-exit();
-}
-/*else
-{ 
-$wp_user_id = get_current_user_id();
-} */
 
 //now display to configuration data of the site we found
 if (!defined('REGISTRATION_CATEGORY_HEADING')) {
 include('translations/en.php')  ;
 }
-?>	
+?>  
 <div class="wrap">
 <style type="text/css">span.dropt {border-bottom: thin dotted; background: #ffeedd;}
 span.dropt:hover {text-decoration: none; background: #ffffff; z-index: 6; }
@@ -369,47 +559,85 @@ span.dropt span {position: absolute; left: -9999px;
   margin: 4px 0 0 0px; padding: 3px 3px 3px 3px; 
   border-style:solid; border-color:black; border-width:1px;}
 span.dropt:hover span {margin: 20px 0 0 170px; background: #ffffff; z-index:6;} </style>
+<?php 
+$current_url = $_SERVER['REQUEST_URI'] ;
+if(isset($_POST[submit])){
+//POST = Array ( [option_page] => manna_member-group [action] => update [_wpnonce] => 1347a914bb [_wp_http_referer] => /wp-admin/admin.php?page=manna-network [wp_user_id] => 202 [mn_agent_id] => 17 [mn_agent_url] => 1stbitcoinbank.com [mn_agent_folder] => manna_network [installer_id] => 1 [wp_page_name] => [submit] => Save Changes ) 
+
+if(isset($_POST['mn_local_lnk_num']) && is_numeric($_POST['mn_local_lnk_num'])){
+
+update_option( 'mn_php_login_user_id',  $_POST['user_id']);
+}   
+if(isset($_POST['mn_agent_id']) && is_numeric($_POST['mn_agent_id'])){
+update_option( 'mn_agent_id', $_POST['mn_agent_id']);
+}
+
+    update_option( 'mn_agent_url', 'change_me');
+    update_option( 'mn_agent_folder','change_me');
+    update_option( 'wp_page_name', 'change_me');
+    update_option( 'installer_id' , 'change_me');
+    update_option( 'plugin_is_registered' , 'no');
+
+echo '<br>POST = ';
+print_r($_POST);
+}
+else
+{ 
+//echo '<h1>line 586 at beginning of form and is the "else" of if submit</h1>';
+?>
+
+<form method="post" action="../wp-content/plugins/manna-network/options.php">
+
+  <?php
+
+/*  settings_fields( 'manna_member-group' );
+   do_settings_sections( 'manna_member-group' ); 
+*/
+$wp_user_id = get_current_user_id();
+
+?>
 <script>
 var blink_speed = 1000; // every 1000 == 1 second, adjust to suit
 var t = setInterval(function () {
     var ele = document.getElementById('myBlinkingDiv');
     ele.style.visibility = (ele.style.visibility == 'hidden' ? '' : 'hidden');
 }, blink_speed)
-</script>
-<?php 
-$wp_user_id = get_current_user_id();
-?>
+</script> 
 
-<form method="GET" action="" >
 <table class="form-table">
-		<tr valign="top">
-		<th scope="row" colspan="3"> Configuration</th></tr>
+    <tr valign="top">
+    <th scope="row" colspan="3"> Configuration</th></tr>
 <tr><td colspan="3"><h3 style="color:red;">We have retrieved the following information about your website and inserted it in the form below for your convenience. <br>IMPORTANT! Correct information is essential for you to receive your commissions!<br> You are responsible to verify the accuracy of the info. They should match those you view by logging into your advertiser's admin page at <a target="_blank" href="https://<?php echo $mn_agent_url."/".$mn_agent_folder.'/manna-network/members">https://'.  $mn_agent_url."/".$mn_agent_folder.'/manna-network/members></a>';?> (then click the "Get Better Placement" button to see the settings in the left column)</h3></td></tr>
 
 <tr><td>&nbsp;</td><td>Suggested<br>Settings *</td></tr>
-<tr><td>Your Link ID -> </td><td><input style ="border-style: none;background-color: darkred;color: white;font-weight: bold;padding-left: 2px;" type="text" name="mn_local_lnk_num" value="<?php echo esc_attr( $remote_lnk_num ); ?>" /></td></tr>
+<tr><td>Your User ID -> </td><td><input style ="border-style: none;background-color: darkred;color: white;font-weight: bold;padding-left: 2px;" type="text" name="php_login_user_id" value="<?php echo esc_attr($advertiser_info['user_id'] ); ?>" /></td></tr>
 <tr><td>Agent ID -> </td><td><input style ="border-style: none;background-color: darkred;color: white;font-weight: bold;padding-left: 2px;" type="text" name="mn_agent_id" value="<?php echo esc_attr( $agent_ID ); ?>" /></td></tr>
 <tr><td>Agent url -> </td><td><input style ="border-style: none;background-color: darkred;color: white;font-weight: bold;padding-left: 2px;" type="text" name="mn_agent_url" value="<?php echo esc_attr( $mn_agent_url ); ?>" /></td></tr>
 <tr><td>Agent folder name -> </td></td><td><input style ="border-style: none;background-color: darkred;color: white;font-weight: bold;padding-left: 2px;" type="text" name="mn_agent_folder" value="<?php echo esc_attr( $mn_agent_folder ); ?>" /></td></tr>
-
 <tr><td><p>
 
-	 <input type=button onClick="location.href='../wp-admin/admin.php?page=manna-network&mn_local_lnk_num=<?php echo esc_attr( $remote_lnk_num );?>&mn_agent_id=<?php echo esc_attr( $agent_ID ); ?>&mn_agent_url=<?php echo esc_attr( $mn_agent_url ); ?>&mn_agent_folder=<?php echo esc_attr( $mn_agent_folder ); ?>&fstate=submit_configs'"
- value='Click here if settings are correct'>
-	
-</td></tr>	</table>
+  <?php submit_button(); ?>
+  
+</td></tr>  </table>
 </form>
+<?php
+}
+//}
+?>
 </div>
-	<?php
-	}//close configuration
+  <?php
+
+//} closing because closed the else on 271
+}
 }
 
+
 function mannanetwork_func( $atts ) {
-	/**
-	* Manna network func
-	*/
-	include 'mannanetwork-main.php';
-	return '';
+  /**
+  * Manna network func
+  */
+  include 'mannanetwork-main.php';
+  return '';
 }
 
 define( 'MN_DIR_ROOT', dirname( __FILE__ ) . '/' );
@@ -418,5 +646,4 @@ define( 'MN_DIR_URL', '/wp-content/plugins/' . $url . '/' );
 define( 'MN_DIR_MOREINFO', 'http://www.Manna-Network.com/' );
 
 add_shortcode( 'mannanetwork', 'mannanetwork_func' );
-
 
