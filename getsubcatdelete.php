@@ -5,12 +5,12 @@ $category_id = '';
 if ( get_option( 'mn_agent_url' ) && 'changeme' !== get_option( 'mn_agent_url' ) ) {
 	$mn_agent_url = get_option( 'mn_agent_url' );
 } else {
-	$mn_agent_url = 'change_me';
+	$mn_agent_url = '';
 }
 if ( get_option( 'mn_agent_folder' ) && 'changeme' !== get_option( 'mn_agent_folder' ) ) {
 	$mn_agent_folder = get_option( 'mn_agent_folder' );
 } else {
-	$mn_agent_folder = 'change_me';
+	$mn_agent_folder = '';
 }
 
 if ( strpos( get_site_url(), 'https://' ) !== false ) {

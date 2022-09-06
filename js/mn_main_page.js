@@ -1,4 +1,4 @@
-<script type='text/javascript'>
+<script>
 
  function select_main_category ( selected_category )
 {

@@ -1,5 +1,5 @@
 <?php
-$plugin_is_registered = get_option('plugin_is_registered');
+$plugin_is_registered = get_option('mn_plugin_is_registered');
 
 if($plugin_is_registered == "no" || $plugin_is_registered == "")
 {
