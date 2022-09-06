@@ -1,4 +1,3 @@
-<script>
 function paginatorMenu(catid, pageid,mn_agent_url,mn_agent_folder,tregional_num,numberOfPages,nonce)
 {
 //is this function used? Where? is NOT in MAIN. OH, is used in itself (below). So it replaces the paginator_menu on main (which calls the combgetAdDisplayPageReg function instead of this one). That doesn't look right? The combgetAdDisplayPageReg function lacks the numberOfPages argument present in this function.
@@ -249,7 +248,7 @@ if (submitted_regional_num.indexOf(":") > 0) {
 	//IF so, we need to find, copy and save the existing argument 
 	// the needed value will be var twoargumentssplit[0];
 	var myregarr = submitted_regional_num.split(":");
-//	window.alert('in mn_ajax.js myregarr[1] = '+myregarr);
+	//window.alert('in mn_ajax.js myregarr[1] = '+myregarr);
 	var inserturl = '<a href="?' + twoargumentssplit[0] + '&tregional_num=' + myregarr[1] + '&main_cat_nonce=' + nonce +'"><button><span class="mn_btn"><img height="50" width="50" src="/wp-content/plugins/manna-network/images/go-button-animation.gif"</span></button></a>';
 	}
 else
@@ -453,4 +452,3 @@ function loadDoc()
   xmlhttp.open("GET","/wp-content/plugins/manna-network/ajax_info.txt", true);
     xhttp.send();
 }
-</script>

@@ -8,6 +8,7 @@ header{
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+.page-template-fullwidth .div#primary, .page-template-fullwidth .hentry {max-width:100%!important;}
 #box_content{
     display:table;
 width: 300px ;

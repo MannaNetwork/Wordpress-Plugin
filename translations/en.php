@@ -22,15 +22,15 @@ define("WORDING_REGIONAL_FILTERS_LABEL", "<h4>Filter Results To Selected Locatio
 define("WORDING_REGIONAL_REG_LABEL", "<h4>OFFER BY<BR>LOCATION</h4>");
 define("WORDING_AJAX_1", "More Subcategories Available After Selection");
 define("WORDING_AJAX_2", "Still More Subcategories To Choose From");
-define("WORDING_AJAX_REGIONAL_FILTER_LABEL", "Smaller Regions Available After Selection");
-define("WORDING_AJAX_REGIONAL_MENU1", "Filter By Your Region (optional)");
-define("WORDING_AJAX_REGIONAL_MENU2", "Filter By State (optional)");
-define("WORDING_AJAX_REGIONAL_MENU3", "Filter By City (optional)");
+define("WORDING_AJAX_REGIONAL_FILTER_LABEL", "Sub-Regions");
+define("WORDING_AJAX_REGIONAL_MENU1", "Filter By Your Region");
+define("WORDING_AJAX_REGIONAL_MENU2", "Filter By State");
+define("WORDING_AJAX_REGIONAL_MENU3", "Filter By City");
 
-define("WORDING_AJAX_REGIONAL_REG_LABEL", "Smaller Regions Available After Selection");
-define("WORDING_AJAX_REGIONAL_REG1", "Offer By Region (optional)");
-define("WORDING_AJAX_REGIONAL_REG2", "Offer By State (optional)");
-define("WORDING_AJAX_REGIONAL_REG3", "Offer By City (optional)");
+define("WORDING_AJAX_REGIONAL_REG_LABEL", "Sub-Regions");
+define("WORDING_AJAX_REGIONAL_REG1", "Region");
+define("WORDING_AJAX_REGIONAL_REG2", "State");
+define("WORDING_AJAX_REGIONAL_REG3", "City");
 
 
 define("REG_FORM_WELCOME_TITLE", "Thank You For Wanting To Add Your Link To Our Classified Cooperative!");
@@ -88,9 +88,21 @@ define("MESSAGE_USERNAME_EMPTY", "<h3>Username field was empty</h3>");
 define("MESSAGE_USERNAME_EXISTS", "<h3>Sorry, that username is already taken. Please choose another one.</h3>");
 define("MESSAGE_USERNAME_INVALID", "<h3>Username does not fit the name scheme: only a-Z and numbers are allowed, 2 to 64 characters</h3>");
 define("MESSAGE_USERNAME_SAME_LIKE_OLD_ONE", "<h3>Sorry, that username is the same as your current one. Please choose another one.</h3>");
-define("MESSAGE_RESEND_EMAIL", "Configuration Status</h2><h3 style='color:red;'>We were not able to detect that you have responded to the email verification email that we sent you.  We searched our database registrations for your website $http_host and found it is registered as an advertiser in the Manna Network but the system is awaiting your verification of your email address. <b>You need to click the link in the email we sent you!</b>. If for some reason you don\'t find the confirmation email in your inbox then be sure to check your spam folder (and [if there] be sure to whitelist emails from that sender in your email client). <h3 style='color:red;'>If you need the verification email to be resent then click the button below.</h3>");
-
-define("MESSAGE_NO_REGISTRATION", "Configuration Status</h2><h3 style='color:red;'>We were not able to detect that you have registered as an advertiser?.  We searched our database registrations for your website $http_host and were not able to find it as an advertiser in the Manna Network <b>You need to  <h3 style='color:red;'>You need sign up as an advertiser (free) in order to configure the plugin properly. Either return to the website that turned you on to The Manna Network and register there (in their M.M. Directory) or visit <a target='_blank' href='https://manna-network.com/register'>https://manna-network.com/register</a> to find a registration site </h3>");
+define("MESSAGE_CONFIGURATION_STATUS_HEADING", "<h2 style='color:red;'>Configuration Status</h2>");
+define("MESSAGE_RESEND_EMAIL1", "<h3 style='color:red;'>We were not able to detect that you have responded to the email verification email that we sent you.  We searched our database registrations for your website");
+ define("MESSAGE_RESEND_EMAIL2", "and found it is registered as an advertiser in the Manna Network but the system is awaiting your verification of your email address. <b>You need to click the link in the email we sent you!</b>. <p>If for some reason you don't find the confirmation email in your inbox then be sure to check your spam folder (and, if there, be sure to whitelist emails from that sender in your email client).</h3> <h3 style='color:red;'>REMEMBER: The email will be sent from a Manna Network Authorized Agent (yours is ");
+define("MESSAGE_RESEND_EMAIL3", " and you can verify their affiliate status with Manna Network at <a target=\"_blank\" href=\"https://manna-network.com/agents\">Manna-Network.com</a>).And, also, that Manna Network Authorized Agent also hosts your advertiser admin panel where you can:<ul><li>Add your listing to more categories</li><li>Add more websites</li><li>Bid for better placement</li><li>Check your earnings</li></ul></h3><h3 style='color:red;'>If you would like for the verification email to be resent then click the button below.</h3>");
+define("MESSAGE_RESEND_EMAIL_BUTTON", "Resend Email Verification");
+define("MESSAGE_RESEND_EMAIL_REFRESH", "<h3 style='color:red;'>After verifying email address, refresh this page.</h3>");
+define("MESSAGE_NO_REGISTRATION_HEADING", "<h3 style='color:red;'> Site is not registered.</h3>");
+define("SET_OPTIONS_SUCCESS", "<h2>Your configurations have been saved.</h2>");
+define("SET_OPTIONS_REFRESH", "<h3>Please refresh the page</h3>");
+define("CLEAR_OPTIONS_SUCCESS", "<h2>Your configurations have been cleared</h2>");
+define("CLEAR_OPTIONS_REFRESH", "<h3>Please refresh the page to reset (be sure to click the \"Save\" button)</h3>");
+define("CONFIGURATION_HEADING", "Configuration");
+define("CONFIGURATION_FORM_MESSAGE1", "<h3 style='color:red;'>We have retrieved the following information about your website and inserted it in the form below for your convenience. <br>IMPORTANT! Correct information is essential for you to receive your commissions!<br> You are responsible to verify the accuracy of the info. The settings below should match those you view by logging into your advertiser's admin page/dashboard at");
+define("CONFIGURATION_FORM_MESSAGE1R", "<h3 style='color:red;'><u><b>We have detected that the plugin is already registered!</b></u><br> We retrieved the following information about your website and inserted it in the form below for your convenience. <br>IMPORTANT! Submitting this form will overwrite your current settings! Correct information is essential for you to receive your commissions!<br> You are responsible to verify the accuracy of the info. The settings below should match those you view by logging into your advertiser's admin page at");
+define("CONFIGURATION_FORM_MESSAGE2", "(then click the \"Settings\" button to see the stored settings for this ad/link)</h3>");
 
 // views
 define("WORDING_BACK_TO_LOGIN", "<h3>Back to Login Page</h3>");
@@ -114,7 +126,8 @@ define("WORDING_REGISTER", "Register");
 define("WORDING_REGISTER_NEW_ACCOUNT", "<h3>Register new account</h3>");
 define("MESSAGE_WEBSITE_CATEGORY_EMPTY", "<h3>Please select the best category describing your website or business</h3>");
 define("WORDING_REGISTRATION_TITLE", "<h3>Title - Please enter a description (a heading or title) for your website or business. It will be the heading for your listing</h3>");
-define("WORDING_REGISTRATION_URL", "<h3>Landing Page URL - it is strongly suggested that you prepare a page specifically for this ad. Enter the URL here.</h3>");
+define("WORDING_REGISTRATION_URL", "<h3>Domain Name/URL</h3>");
+define("WORDING_REGISTRATION_PAGE_NAME","<h3>Create a page specifically for this ad?</h3>");
 define("WORDING_REGISTRATION_DESCRIPTION", "<h3>Description - Enter a 50 to 255 character description of your website or business</h3>");
 define("WORDING_REGISTRATION_CATEGORY", "<h3><b>Category (required) -</b> Select the BEST category for your website or business listing from among either main categories or subcategories (Hint: the higher the category, the more the competition).</h3>");
 
@@ -136,11 +149,11 @@ define("WORDING_REGISTRATION_RECIPROCAL", "
 
 
 
-define("WORDING_TXTHINT1", "More Subcategories Available After Selection");//x
-define("WORDING_TXTHINT_2", "Still More Subcategories To Choose From");
+define("WORDING_TXTHINT1", "More After Selection");//x
+define("WORDING_TXTHINT_2", "Still More");
 define("WORDING_AJAX_MENU", "Select a Category (required)");
-define("WORDING_AJAX_MENU1", "Select a Sub-Category (optional)");
-define("WORDING_AJAX_MENU2", "A Deeper Sub-Category? (optional)");
+define("WORDING_AJAX_MENU1", "Select a Sub-Category");
+define("WORDING_AJAX_MENU2", "A Deeper Sub-Category?");
 
 
 define("SUMMARY_AJAX_HEADER", "<h4>The report below will be adjusted to reflect the bidding and competition in the category and/or location you selected. As a general rule, the higher the category or location, the lower your free link will be displayed or the more expensive the bid required to get better placement will be.</h4> ");
@@ -218,7 +231,7 @@ define("WORDING_YOU_ARE_LOGGED_IN_AS", "<h3>You are logged in as </h3>");
 //located on the plugin's Manna Network admin in the dashboard
 define("ADMIN_PAGE_NAME", "After verifying the accuracy of the configurations automatically detected and entered above, locate and enter the name of the page that you entered the Manna Network shorttag on. Hint: If you are new to Wordpress do a Quick read on \"Permalinks\" (which is Wordpress's method to make the links \"pretty\" for users and search engine friendly )");
 define("REGISTRATION_CAT_HEADING", "Select Category");
-define("REGISTRATION_REGIONAL_HEADING_SEL", "Select A Location (OPTIONAL)");
+define("REGISTRATION_REGIONAL_HEADING_SEL", "<h4>Select A Location (OPTIONAL)</h4>");
 define("REGISTRATION_GENERAL_ERROR1", " entry error ... ");
 define("REGISTRATION_GENERAL_ERROR2", " Current value: ");
 define("REGISTRATION_LNK_NUM1", "You must supply the link number of the recruiter (You can find it by logging in to your advertiser dashboad, click the \"Get Better Placement\" button).");
@@ -243,19 +256,28 @@ country selected will appear, for example (but results from all fifty
 states in the USA would also appear) but if the viewer selects a
 specific state (or city) then only those will appear..</p>");
 define("REG_BLOKT_REGIONAL_MOUSEOVER", "Regional Selection Help");
-define("REG_BLOKT_URL_MESSAGE", "<p>CREATE A LANDING PAGE</p>
+define("WORDING_PROTOCOL_TITLE", "<h3>Select Current Protocol</h3>");
+define("PROT_BLOKT_TITLE_MOUSEOVER","An SSL protected site (sic. uses \https://\") is very strongly recommended (and it helps your SEO too!)");
+define("PROT_BLOKT_TITLE_MESSAGE","An SSL protected site (sic. uses \https://\") is very strongly recommended (and it helps your SEO too!)");
+define("REG_BLOKT_URL_MESSAGE", "<p>ENTER YOUR DOMAIN NAME</p>
+<p>No https://, http://, or www.</p><p>For an explanation, Google \"Is www. in a url necessary or helpful?\"</p>");
+define("REG_BLOKT_URL_MOUSEOVER", "URL/Domain Name Help");
+define("REG_BLOKT_URL_INPUT_MESSAGE", "Insert Your Domain Name URL HERE");
+define("REG_BLOKT_PAGE_MESSAGE", "<p>CREATE A LANDING PAGE</p>
 <p>It is strongly suggested you create a landing page so that you can
-track the results of the ad campaign yourself. Note, it doesn’t
+better track the results from the Manna Network. Note, it doesn’t
 have to be unique content (because we have a No Index/No Follow meta
 tag on the directory to avoid duplicate content search engine
 problems). You can do something as simple as making a duplicate of
-your home page (with a different name of course) and entering that
-url here. To track the results of the advertising campaign go into
+your home page (with a different file/page name of course) and entering that
+PAGE here. To track the results of the advertising campaign go into
 your own stats software (example: AWStats in CPanel) to see how much
 traffic you are receiving from the ad network (you can be pretty
 certain the traffic came from the ad network if the only links to
-that page are the ones in the ad network).</p>");
-define("REG_BLOKT_URL_MOUSEOVER", "URL/Landing Page Help");
+that page are the ones in the ad network, right?).</p>
+<p>This is especially important to merchants who place ads in the \"Deals\" category (they must create a page specifically for the deal(s) they are offering)</p>");
+define("REG_BLOKT_PAGE_MOUSEOVER", "Landing Page Help");
+define("REG_BLOKT_PAGE_INPUT_MESSAGE", "Insert Your LANDING PAGE NAME HERE (optional)");
 define("REG_BLOKT_DESCRIPTION_MESSAGE", "<p>Add An Ad Description</p>
 <p>Try to come up with an exciting and interesting GENERAL
 description of your main goods, services or blog topic. Attention
@@ -274,11 +296,32 @@ processed. It also gives you access to your Control Panel where you
 can add more ads, edit existing ads and bid for better position. 
 </p>");
 define("REG_BLOKT_EMAIL_MOUSEOVER", "Email Info");
+define("CONFIG_BLOKT_PGNAME_TITLE","Your Page Name/Slug Info");
+define("CONFIG_BLOKT_PGNAME_MESSAGE", "<p>Enter The Name Of The Page(also known as the slug) That Displays The Directory On Your Website</p>
+<p>This is optional (or can be edited later) but adding the page name helps build your customer base. The Manna Network website posts the websites of its members so that new advertisers can choose one to register at. Adding your page name makes the Manna Network posted link go directly to your directory page and makes it easier for new advertisers to find YOUR registration page.</p>");
+define("CONFIG_BLOKT_PGNAME_MOUSEOVER", "Page Name/Slug Info");
+define("CONFIG_BLOKT_MEETUP_TITLE","Start A Meetup!");
+define("CONFIG_BLOKT_MEETUP_MESSAGE", "<p>A great way to build your Manna Network \"downline\" is to start a <a target=\"_blank\" href=\"meetup.com\">Meetup (see Meetup.com)</a> in your local area! </p><p>&nbsp;</p><p>Meetups are a great way for potential advertisers and members to learn such things as web advertising, website monetization, Bitcoin, how to use and operate the Manna Network system etc.</p><p>&nbsp;</p><p>IF you start a Meetup be sure to add the link to it here so that The Manna Network can help promote it!</p>");
+define("CONFIG_BLOKT_MEETUP_MOUSEOVER", "Meetups are a great way for potential advertisers and members to learn!");
 define("REG_BLOKT_TITLE_MESSAGE","<p>ADD AN AD TITLE</p>
 <p>Create something exciting and descriptive about your business or
 website. Try to make it eye-catching and informative about the goods
 or services you provide or, if yours is a blog site then enter
 something describing your main topic.</p>");
+define('CONFIG_BLOKT_CONTACT_TITLE','Create A Contact Form(Optional');
+define('CONFIG_BLOKT_CONTACT_MOUSEOVER','CREATE A CONTACT FORM');
+define('CONFIG_BLOKT_CONTACT_MESSAGE','<p>(Optional) If you would like web directory visitors to contact you with questions then we can create a "Contact Us" page for your directory. You can insert either a shorttag of your Wordpress "contact" plugin or your email address and we will create the page for your web directory');
+
 define("REG_BLOKT_TITLE_MOUSEOVER", "Title Hint");
 
 define("NO_CONFIG", '<h1>Click the "Manna Network" link in your Dashboard to configure the plugin. </h1>');
+define("NO_LINK_QUERY_RESULTS", '<div style="width: 50%;  margin: auto;  border: 3px solid #4287f5;  font-size: 2em;   background-color: chartreuse;">Sorry, No Links/Ads found in this category. Try another or a "higher" or more general category...</div>');
+define("NO_LINK_QUERY_RESULTS_REGIONAL", '<div style="width: 50%;  margin: auto;  border: 3px solid #4287f5;  font-size: 2em;   background-color: chartreuse;">Sorry, No Links/Ads found in this category/location. Try another "higher" or more general category and/or location...</div>');
+define("NO_REGISTRATION1", "<h2>Configuration Status</h2><h3 style='color:red;'>We were not able to detect that your website ");
+define("NO_REGISTRATION2"," is registered as an advertiser in the Manna Network (which is required in order for you to configure the plugin). 
+</h3>
+<h3 style='color:red;'>If you found and downloaded the plugin from one of our members or found out about the Manna Network from one then, please, register at that member site (visit their site, find their Manna Network display page and click the \"Add URL\" link)!</h3>
+<h3>Otherwise, you can find a member site to register at <a href='https://manna-network.com/register'>https://Manna-Network.com/register</a></h3>
+<h3>Registration is free!</h3>
+<h3>AND it will send traffic to your website from the growing network of other websites using the plugin!</h3>
+<h3>After registering, refresh this page.</h3>");

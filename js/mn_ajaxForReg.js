@@ -1,10 +1,9 @@
+
 <script>
+/* The main (perhaps ONLY?) difference between this javascipt and similarly name mn_ajax.js file is that this one omits the calls to the updateGoButton And deleted the function itself*/
 function paginatorMenu(catid, pageid,mn_agent_url,mn_agent_folder,tregional_num,numberOfPages,nonce)
 {
-//is this function used? Where? is NOT in MAIN. OH, is used in itself (below). So it replaces the paginator_menu on main (which calls the combgetAdDisplayPageReg function instead of this one). That doesn't look right? The combgetAdDisplayPageReg function lacks the numberOfPages argument present in this function.
-//So to test, we will create a window.alert
-window.alert('In paginatorMenu function - creating a new paginator menu');
-//apparently, this function is not used in the script at present. It is not at all comparable to the combgetAdDisplayPageReg function because it doen't even query the database like combgetAdDisplayPageReg function does? AND, the two "for loops" USE the same vars (numberOfPages) while the for loop in paginator.php uses $mn_pgn8tr_menu_items and $number_of_rows. 
+
      /*FIRST, build a replacement for the paginator menu */
    if(numberOfPages > 5){
   /*add the previous page arrows and button to end of pages */ 
@@ -58,12 +57,10 @@ output += "</td></tr></table></div>";
 
 }
 
-//function showSubLoc1(str, main_cat_nonce,currentLevel,cat_id,type) 
-function showSubLoc1(str, main_cat_nonce,currentLevel,cat_id,type,agent_url,agent_folder) 
+function showSubMenu(str, main_cat_nonce,currentLevel,cat_id,type,agent_url,agent_folder) 
 {
-//window.alert('in showsubloc1');
 /*
-Process:
+Process description:
 1) Query remote server, receive JSON string of next menu items
 2) Create the next html menu from the data - store as variable "output"
 3) Add the next holder for the next menu to ouput var - name it with # currentlevel + 1
@@ -71,9 +68,8 @@ Process:
 
 */
 var myarr = str.split(":");
-/*
-var is something like <option value='y:" + combo_list[j].id + ':' + combo_list[j].name + ':' + combo_list[j].lft + ':' + combo_list[j].rgt + "'>
-*/
+
+
 var nextLevel= parseFloat(currentLevel) + 1;
 if(type=="regions"){
 var currentBlockNameStr= 'locHint'+(parseFloat(currentLevel));
@@ -92,70 +88,107 @@ var nextBlockNameStr= 'catHint'+(parseFloat(currentLevel) + 1);
     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   }
   xmlhttp.onreadystatechange=function() {
-
     if (this.readyState==4 && this.status==200) {
 var data = this.responseText;
+
+
 var combo_list = JSON.parse(data);
-if(combo_list == "NO MORE SUB CATEGORIES" || combo_list == "Sorry, No More Selections.")
-{ 
-//note "Sorry, No More Selections." is for regional
- document.getElementById(currentBlockNameStr).innerHTML=combo_list+'<div class="'+nextBlockNameStr+'" id="'+nextBlockNameStr+'" name="'+nextBlockNameStr+'" style="background-color: yellow;"></div>';
-}
-else
-{
-var output = '<form action=""><select name="subLoc1" onchange="showSubLoc1(this.value,\''+main_cat_nonce+'\','+nextLevel+','+cat_id+',\''+type+'\',\''+agent_url+'\',\''+agent_folder+'\'),updategoButton(';
-//myarr[1] would be the id. Now we concatenate the lft/rgt value (for regions) to send to the dropdown for use in getting number of pages.
+/* Am leaving these window alerts because the comparison operator (if =) gave me so much trouble.
 
-if(type=="regions"){
-output += '\'false\',this.value,\''+main_cat_nonce+' \',\''+myarr[1]+'\',\''+cat_id+'\')"><option value="">' + wording_ajax_regional_menu1 + '</option>';
-}
-else
-{
-output += 'this.value,\'false\',\''+main_cat_nonce+' \',\''+myarr[1]+' \',\''+cat_id+'\')"><option value="">' + wording_ajax_menu1 + '</option>';
-}
+window.alert('combo_list just before if not = '+combo_list);
+window.alert('typeof combo_list before if = '+ typeof(combo_list));
+window.alert('JSON.stringify( just before if not = '+JSON.stringify(combo_list));
+var nosubs='"NO MORE SUB CATEGORIES"';
+window.alert('nosubs with added quotes = '+nosubs);
+window.alert('typeof( nosubs with added quotes = '+typeof(nosubs));
+var noregs= '"Sorry, No More Regional Filters Found."'
+//if(nosubs !== JSON.stringify(combo_list) || noregs !== JSON.stringify(combo_list)){ 
+if(typeof(combo_list)!=='string'){
+window.alert('testing if(combo_list != "NO MORE SUB CATEGORIES" || combo_list != "Sorry, No More Regional Filters Found.") - wasn\'t found and entered test area');
+window.alert('typeof combo_list in test if = '+ typeof(combo_list));
+window.alert('combo_list = ' +combo_list);  
 
+} */
+if(typeof(combo_list)!=='string'){
+//window.alert('CL is not a string');
+//}
+//if(combo_list !== "NO MORE SUB CATEGORIES" || combo_list !== "Sorry, No More Regional Filters Found."){
+//NO MORE SUB CATEGORIES
+
+var output = '<select name="';
+	if(type=="regions"){
+	//new str, main_cat_nonce,currentLevel,cat_id,type,agent_url,agent_folder
+	//old function showSubMenu(str, currentLevel,cat_id,type) 
+	//original showSubLoc1(this.value,'+main_cat_nonce+','+nextLevel+','+cat_id+',\''+type+'\',\''+agent_url+'\',\''+agent_folder+'\')">';
+	output += 'selected_region_id" onchange="showSubMenu(this.value,'+main_cat_nonce+','+nextLevel+','+cat_id+',\''+type+'\',\''+agent_url+'\',\''+agent_folder+'\')">';
+	output += '<option value="">' + wording_ajax_regional_menu1 + '</option>';
+	}
+	else
+	{
+	output += 'selected_cat_id" onchange="showSubMenu(this.value,'+main_cat_nonce+','+nextLevel+','+cat_id+',\''+type+'\',\''+agent_url+'\',\''+agent_folder+'\')">';
+	output += '<option value="">' + wording_ajax_menu1 + '</option>';
+	}
+ 
 	for ( j = 0; j < combo_list.length; j++) {
 		if ( '' !== combo_list[j].name ) {
 			if ( combo_list[j].lft + 1 < combo_list[j].rgt ) {
 			//y or n tells the AJAX functions whether there are any more subcategories
-				output += "<option value='y:" + combo_list[j].id + ':' + combo_list[j].name + ':' + combo_list[j].lft + ':' + combo_list[j].rgt + "'>" + combo_list[j].name + '</option>';
+				output += "<option value='y:" + combo_list[j].id + ':' + combo_list[j].name + "'>" + combo_list[j].name + '</option>';
 			} else {
-				output += "<option value='n:" + combo_list[j].id + ':' + combo_list[j].name + ':' + combo_list[j].lft + ':' + combo_list[j].rgt + "'>" + combo_list[j].name + '</option>';
+				output += "<option value='n:" + combo_list[j].id + ':' + combo_list[j].name + "'>" + combo_list[j].name + '</option>';
 				}
 			}
 		}
-	/*output += '<input type="hidden" id="select_name" name="location_name" class ="location_name" value=""><input type="hidden" id="location_id" name="location_id" class ="location_id" value=""></select></form>';*/
-	
-	output += '</select></form>';
-if(type=="regions"){
-      document.getElementById(currentBlockNameStr).innerHTML=output+'<div class="'+nextBlockNameStr+'" id="'+nextBlockNameStr+'" name="'+nextBlockNameStr+'" >'+still_more_cats_reg+'</div>';
-      document.getElementById("selected_region_id").value = myarr[1];
-document.getElementById("selected_region_name").value = myarr[2];
+	if(type=="regions"){
+	output += '<input type="hidden" id="location_name" name="location_name" class ="location_name" value="">';
+	output += '<input type="hidden" id="location_id" name="location_id" class ="location_id" value="'+myarr[1]+'"></select>';
+	//window.alert('before get element- currentBlockNameStr = '+currentBlockNameStr+'and output = '+output);
+	      document.getElementById(currentBlockNameStr).innerHTML=output+'<div class="'+nextBlockNameStr+'" id="'+nextBlockNameStr+'" name="'+nextBlockNameStr+'" >'+still_more_cats_reg+'</div>';
+	      document.getElementById("selected_region_menu_name").value = myarr[2];
+	      document.getElementById("location_name").value = myarr[2];
+	document.getElementById("selected_region_name").value = myarr[2];
+	document.getElementById("selected_region_id").value = myarr[1];
+	}
+	else
+	{
+	//selected_cat_menu_name
+	output += '<input type="hidden" id="cat_name" name="cat_name" class ="cat_name" value="">';
+	output += '<input type="hidden" id="cat_id" name="cat_id" class ="cat_id" value="'+myarr[1]+'"></select>';
+	    document.getElementById(currentBlockNameStr).innerHTML=output+'<div class="'+nextBlockNameStr+'" id="'+nextBlockNameStr+'" name="'+nextBlockNameStr+'" >'+still_more_cats+'</div>';
+	//window.alert('before document.getElementById("selected_cat_menu_name").value = (myarr[2]) = '+myarr[2]);
 
+	   document.getElementById("selected_cat_menu_name").value = myarr[2];
+	document.getElementById("selected_cat_name").value = myarr[2];
+	//window.alert('cat_id line 93 = '+cat_id);
+	//window.alert('before doc get elbyid (before in was string) selected_cat_id asmyarr[1]= '+myarr[1]);
+	document.getElementById("selected_cat_id").value = myarr[1]; 
+	}
 }
-else
+else//if(combo_list == "NO MORE SUB CATEGORIES" || combo_list == "Sorry, No More Regional Filters Found.")
 {
-   document.getElementById(currentBlockNameStr).innerHTML=output+'<div class="'+nextBlockNameStr+'" id="'+nextBlockNameStr+'" name="'+nextBlockNameStr+'" >'+still_more_cats+'</div>';
-   document.getElementById("selected_cat_id").value = myarr[1];
-document.getElementById("selected_cat_name").value = myarr[2];
+// window.alert('found "Sorry, No More Regional Filters Found" from data ='+data);
 
-}
-     }
+ document.getElementById(currentBlockNameStr).innerHTML=combo_list+'<div class="'+nextBlockNameStr+'" id="'+nextBlockNameStr+'" name="'+nextBlockNameStr+'" style="background-color: yellow;"></div>';
+	 if(type=="regions"){
+	 document.getElementById("selected_region_id").value = myarr[1];
+	  document.getElementById("selected_region_menu_name").value = myarr[2];
+	 document.getElementById("city_street_address").innerHTML="<span>Your street address (optional)<input type='text' name='city_street_address' value='' />       Link To Map (optional)<input type='text' name='map_link' value='' /></span>";
+	 }
+	 else
+	 {
+	 //window.alert('cat_id line 48 = '+cat_id);
+//window.alert('selected_cat_id in else (was not a string) as myarr[1]= before document.getElementById("selected_cat_id"'+myarr[1]);
+	 document.getElementById("selected_cat_id").value = myarr[1]; 
+	 document.getElementById("selected_cat_menu_name").value = myarr[2];
+	}
+}   
+    
+    ///////
  }
   }
-  /*
+
+//manna-network/getsubloc1.php
 if(type=="regions"){
-
-  xmlhttp.open("GET","/wp-content/plugins/manna-network/getsubloc1.php?tregional_num="+myarr[1]+"&main_cat_nonce='"+main_cat_nonce+"&type=regions");
-}
-else
-{
-
-xmlhttp.open("GET","/wp-content/plugins/manna-network/getsubloc1.php?q="+myarr[1]+"&main_cat_nonce='"+main_cat_nonce+"&type=categories");
- 
-} */
-if(type=="regions"){
-
   xmlhttp.open("GET","/wp-content/plugins/manna-network/getsubloc1.php?tregional_num="+myarr[1]+"&main_cat_nonce="+main_cat_nonce+"&type=regions&agent_url="+agent_url+"&agent_folder="+agent_folder);
 }
 else
@@ -166,10 +199,11 @@ xmlhttp.open("GET","/wp-content/plugins/manna-network/getsubloc1.php?q="+myarr[1
 }
 
 
+
 function deleteAllLevels(category_id,main_cat_nonce,original_cat_id) 
 {
 //deprecated - removed the 'Clear button from the display
-	var regional_dropdown = "<form action=''><table id='mn_location_table'><tr><td><select name='regional_menu' onchange=\"updategoButton('false',this.value,'"+main_cat_nonce+"' ,"+original_cat_id+"),showSubLoc1(this.value,'"+main_cat_nonce+"' ,1,"+category_id+",'regions')><option value=''>"+ wording_ajax_menu1+" </option><option value='y:2566:Africa'>Africa</option><option value='y:2567:America - Central'>America - Central</option><option value='y:2568:America - North'>America - North</option><option value='y:2569:America - South'>America - South</option><option value='y:2572:Asia'>Asia</option><option value='y:2573:Australia/Oceania'>Australia/Oceania</option><option value='y:2756:Caribbean'>Caribbean</option><option value='y:2575:Europe'>Europe</option><option value='y:2740:Middle East'>Middle East</option></select> <input type='hidden' id='regional_name' name='regional_name' class ='regional_name' value=''><input type='hidden' id='tregional_num' name='tregional_num' class='tregional_num'></td></tr></table></form><div id='locHint1' name='locHint1' class='locHint1'><b>"+still_more_cats_reg+"</b></div>";
+	var regional_dropdown = "<form action=''><table id='mn_location_table'><tr><td><select name='regional_menu' onchange=\"showSubLoc1(this.value,'"+main_cat_nonce+"' ,1,"+category_id+",'regions')><option value=''>"+ wording_ajax_menu1+" </option><option value='y:2566:Africa'>Africa</option><option value='y:2567:America - Central'>America - Central</option><option value='y:2568:America - North'>America - North</option><option value='y:2569:America - South'>America - South</option><option value='y:2572:Asia'>Asia</option><option value='y:2573:Australia/Oceania'>Australia/Oceania</option><option value='y:2756:Caribbean'>Caribbean</option><option value='y:2575:Europe'>Europe</option><option value='y:2740:Middle East'>Middle East</option></select> <input type='hidden' id='regional_name' name='regional_name' class ='regional_name' value=''><input type='hidden' id='tregional_num' name='tregional_num' class='tregional_num'></td></tr></table></form><div id='locHint1' name='locHint1' class='locHint1'><b>"+still_more_cats_reg+"</b></div>";
 document.getElementById("mn_location_container").innerHTML = regional_dropdown;
 document.getElementById("goLink").innerHTML=""; 
 var str="'y':"+original_cat_id+":";
@@ -188,7 +222,7 @@ var currentBlockNameStr= 'catHint'+ 1;
 var data = this.responseText;
 
 var combo_list = JSON.parse(data);
-var output = '<form action=""><table id=\'mn_location_table\'><tr><td><select name=\'regional_menu\' onchange="showSubLoc1(this.value, \''+main_cat_nonce+'\' ,1, \''+original_cat_id+'\' ,\'categories\'),updategoButton(this.value,\'false\',\''+main_cat_nonce+'\',\''+original_cat_id+'\')"><option value=""> '+wording_ajax_menu1+' </option>';
+var output = '<form action=""><table id=\'mn_location_table\'><tr><td><select name=\'regional_menu\' onchange="showSubLoc1(this.value, \''+main_cat_nonce+'\' ,1, \''+original_cat_id+'\' ,\'categories\')"><option value=""> '+wording_ajax_menu1+' </option>';
 for ( j = 0; j < combo_list.length; j++) {
 		if ( '' !== combo_list[j].name ) {
 			if ( combo_list[j].lft + 1 < combo_list[j].rgt ) {
@@ -209,83 +243,6 @@ xmlhttp.open("GET","/wp-content/plugins/manna-network/getsubcat1.php?q="+origina
    xmlhttp.send();
 }
 
-
-function updategoButton(submitted_category, submitted_regional_num, nonce, original_cat_id)
-{
-    var currenturl = document.getElementById("goLink").innerHTML;
-    if (currenturl.indexOf("?") == -1 ) {
-	//script handles the very first onchange event and creates a insert URL (for the getelementbyID) for the GO button
-	//is either sent a category arg or a regional num arg (along with the category id of their current cat location)
-	
-     var a = submitted_category.toString().indexOf(":");
-    if (a == -1)
-    {
-     var mycatarr = ['y',original_cat_id,'name'];
-    }
-    else
-    {
-    var mycatarr = submitted_category.split(":");
-    }
-if (submitted_regional_num === 'false' ) {
-var inserturl = '<a href="?gocat=' + mycatarr[1] + '&tregional_num=0' + '&main_cat_nonce=' + nonce +'"><div class="data-container" style="display: flex; align-items: center; justify-content: center;"><span class="mn_btn" ><img height="50" width="50" src="/wp-content/plugins/manna-network/images/go-button-animation.gif"></span></div></a><div style="width:50px; margin:auto;"><a href="?get_filters_info=true" target="_blank" onClick="window.open(\'?get_filters_info=true\',\'pagename\',\'resizable,height=600,width=800\'); return false;"><img height="42" width="42" src="/wp-content/plugins/manna-network/images/green_arrow.png"></a></div>';
-}
-else
-{
-var myregarr = submitted_regional_num.split(":");
-//the category_id submitted to delete all levels MUST BE the category id of the page currently displayed to them (NOT the category currently selected by the dropdown
-/* BEFORE addinf lft/rgt to gobutton
-var inserturl = '<a href="?gocat=' + mycatarr[1] + '&tregional_num=' + myregarr[1] + '&main_cat_nonce=' + nonce +'"><button><span class="mn_btn"><img height="50" width="50" src="/wp-content/plugins/manna-network/images/go-button-animation.gif"</span></button></a><div style="width:300px; margin:auto;"><div style="width:50px; margin:auto;"><a href="?get_filters_info=true" target="_blank" onClick="window.open(\'?get_filters_info=true\',\'pagename\',\'resizable,height=600,width=800\'); return false;"><img height="42" width="42" src="/wp-content/plugins/manna-network/images/green_arrow.png"></a></div>'; */
-
-var inserturl = '<a href="?gocat=' + mycatarr[1] + '&tregional_num=' + myregarr[1] + '&main_cat_nonce=' + nonce +'"><button><span class="mn_btn"><img height="50" width="50" src="/wp-content/plugins/manna-network/images/go-button-animation.gif"</span></button></a><div style="width:300px; margin:auto;"><div style="width:50px; margin:auto;"><a href="?get_filters_info=true" target="_blank" onClick="window.open(\'?get_filters_info=true\',\'pagename\',\'resizable,height=600,width=800\'); return false;"><img height="42" width="42" src="/wp-content/plugins/manna-network/images/green_arrow.png"></a></div>'; 
-}
-}
-else
-{ 
-
-var currenturlpieces = currenturl.split('"><h1>'); //leaves <a href="?gocat=485&tregional_num=#### at currenturlpieces[0])
-var twoarguments = currenturlpieces[0].split('?'); //leaves gocat=485&tregional_num=####
-var twoargumentssplit = twoarguments[1].split('&amp;'); //leaves gocat=485 in 0 and tregional_num=#### 
-if (submitted_regional_num.indexOf(":") > 0) {
-	//IF so, we need to find, copy and save the existing argument 
-	// the needed value will be var twoargumentssplit[0];
-	var myregarr = submitted_regional_num.split(":");
-//	window.alert('in mn_ajax.js myregarr[1] = '+myregarr);
-	var inserturl = '<a href="?' + twoargumentssplit[0] + '&tregional_num=' + myregarr[1] + '&main_cat_nonce=' + nonce +'"><button><span class="mn_btn"><img height="50" width="50" src="/wp-content/plugins/manna-network/images/go-button-animation.gif"</span></button></a>';
-	}
-else
-{
-var mycatarr = submitted_category.split(":");
-var inserturl = '<a  href="?gocat=' + mycatarr[1] + '&' + twoargumentssplit[1] + '&main_cat_nonce=' + nonce +'"><button><span class="mn_btn"><img height="50" width="50" src="/wp-content/plugins/manna-network/images/go-button-animation.gif"</span></button></a>';
-}
-}
-  document.getElementById("goLink").innerHTML=inserturl; 
-    }
-
-function getLinksAllInOne(page_num, category_id,tregional_num, main_cat_nonce, newnum_of_pages, number_of_links, lft, rgt, mn_agent_url, mn_agent_folder){
-
-//window.alert('in allinone - tregional_num being sent to agent = '+tregional_num);
-if (window.XMLHttpRequest) {
-    // code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
- } else { // code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-}
-  xmlhttp.onreadystatechange=function() 
-{
-    if (this.readyState==4 && this.status==200) {
-var data = this.responseText;
-var ads = JSON.parse(data);
- var output = "<h3>New Results</h3>";
-for ( j = 0; j < ads.length; j++) {
-output += "<tr class='mn_ads'><td id='mn_url'><a target='_blank' href='http://" + ads[j].url + "'>"+ads[j].name + "</a></td></tr><tr  class='mn_ads'><td id='mn_description'> " +ads[j].description + ")</td></tr>";
-}
-  document.getElementById("mn_results_table").innerHTML=output;
-  }
- }
-xmlhttp.open("GET","/wp-content/plugins/manna-network/getLinksAllInOne.php?page_num="+page_num+"&category_id="+category_id+"&tregional_num="+tregional_num+"&newnum_of_pages="+newnum_of_pages+"&number_of_links="+number_of_links+"&lft="+lft+"&rgt="+rgt+"&mn_agent_url="+mn_agent_url+"& mn_agent_folder="+mn_agent_folder,true);
- 
-  xmlhttp.send();
-}
 
 function combgetAdDisplayPageReg(catid, pageid,mn_agent_url,mn_agent_folder,tregional_num,nonce)
 {
@@ -308,7 +265,7 @@ output += "<tr class='mn_ads'><td id='mn_url'><a target='_blank' href='http://" 
   }
  }
 
-xmlhttp.open("GET","/wp-content/plugins/manna-network/links_crl_regional.php?catid="+catid+"&pageid="+pageid+"&mn_agent_url="+mn_agent_url+"&mn_agent_folder="+ mn_agent_folder+"&tregional_num="+ tregional_num+"&main_cat_nonce="+ nonce,true);
+xmlhttp.open("GET","/wp-content/plugins/manna-network/combincl_links_ajax_crl_reg.php?catid="+catid+"&pageid="+pageid+"&mn_agent_url="+mn_agent_url+"&mn_agent_folder="+ mn_agent_folder+"&tregional_num="+ tregional_num+"&main_cat_nonce="+ nonce,true);
   xmlhttp.send();
 }
 
@@ -339,7 +296,7 @@ xmlhttp.open("GET","/wp-content/plugins/manna-network/incl_links_ajax_crl_reg.ph
 }
 
 
-function getAdDisplayPage(catid, pageid,mn_agent_url,mn_agent_folder)
+function getAdDisplayPage2bd(catid, pageid,mn_agent_url,mn_agent_folder)
 {
  if (window.XMLHttpRequest) {
     // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -366,7 +323,7 @@ xmlhttp.open("GET","/wp-content/plugins/manna-network/incl_links_ajax_crl.php?ca
 
 
 
-function updatelinks(str) 
+function updatelinks2bd(str) 
 {
 var getpieces = str.split("|");
 var current_page_number = getpieces[0];
@@ -375,13 +332,13 @@ document.getElementById("manna_link_container").innerHTML = str;
 } 
 
 
-  function select_page(selected_page )
+  function select_page2bd(selected_page )
 {
   document.paginator_form.page_number.value = selected_page ;
   document.paginator_form.submit() ;
 }
 
-function getSummaryReport(catid)
+function getSummaryReport2bd(catid)
 {
 //if there is a catid then it came in from the category dropdown so set its myarr value to the catid session var
 //if there isn't a cat id its because I sent in an empty value from the toggle report links
@@ -426,7 +383,7 @@ document.getElementById("summary").value = myarr[1];
 
 }
 
-function getLocationReport(catid, regionalid)
+function getLocationReport2bd(catid, regionalid)
 {
 //if there is a catid then it came in from the category dropdown so set its myarr value to the catid session var
 //if there isn't a cat id its because I sent in an empty value from the toggle report links
@@ -441,7 +398,7 @@ var myarr = catid.split(":");
 
 
 
-function loadDoc() 
+function loadDoc2bd() 
 {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -453,4 +410,6 @@ function loadDoc()
   xmlhttp.open("GET","/wp-content/plugins/manna-network/ajax_info.txt", true);
     xhttp.send();
 }
+
+
 </script>

@@ -1,0 +1,361 @@
+/*li {
+overflow: hidden;
+display: inline-block;
+}
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  
+}
+*/
+.reg_form{
+text-align:center;
+padding:5px 10px;
+margin:20px;
+}
+
+/* Format the paginator menu ? */
+.mn_btn{
+  color:#000000;
+  background:#E7422C;
+opacity:.6;
+  padding:5px 10px;
+  font-size:8px;
+  /*text-decoration:none;
+  letter-spacing:2px; */
+  text-transform:uppercase;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+
+.mn_btn:hover{
+  border:none;
+  background:rgba(0, 0, 0, 0.4);
+  background:#F4EDEB;
+  padding:5px 10px; 
+  color:#1b1b1b;
+    display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+.mn_btn_container {
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+text-align:center;
+width:5px;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+ /* height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.column:nth-child(even) {
+  background-color: #f2f2f2;
+}
+/* Clear floats after the columns 
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+*/
+
+
+/* Create two equal columns that floats next to each other */
+.columnsub {
+  float: left;
+  width: 40%;
+  padding: 10px;
+  height: 200px; /* Should be removed. Only for demonstration */
+}
+
+.columnsubnarrow {
+  float: left;
+  width: 10%;
+  padding: 10px;
+ height: 200px; /* Should be removed. Only for demonstration */
+}
+.rowsub {
+width: 80%;
+margin-left: 10%;
+margin-right: 10%;
+background-color: #000000;
+color:black;
+}
+/* Clear floats after the columns */
+.rowsub:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/*@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,600');*/
+
+
+
+.nav {
+  font-family: 'Titillium Web';
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+}
+
+.nav * {
+  box-sizing: border-box;
+  transition: all .35s ease;
+}
+
+.nav li {
+  display: inline-block;
+  list-style: outside none none;
+  margin: .5em 1em;
+  padding: 0;
+}
+
+.nav a {
+  padding: .5em .8em;
+  color: #000000;
+  position: relative;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.nav a::before,
+.nav a::after {
+  content: '';
+  height: 14px;
+  width: 14px;
+  position: absolute;
+  transition: all .35s ease;
+  opacity: 0;
+}
+
+.nav a::before {
+  content: '';
+  right: 0;
+  top: 0;
+  border-top: 3px solid #3E8914;
+  border-right: 3px solid #2E640F;
+  transform: translate(-100%, 50%);
+}
+
+.nav a:after {
+  content: '';
+  left: 0;
+  bottom: 0;
+  border-bottom: 3px solid #2E640F;
+  border-left: 3px solid #3E8914;
+  transform: translate(100%, -50%)
+}
+
+.nav a:hover:before,
+.nav a:hover:after{
+  transform: translate(0,0);
+  opacity: 1;
+}
+
+.nav a:hover {
+  color: #3DA35D;
+}
+
+div#mn_subcat_container{
+/*the top level - add url login etc menu*/
+ width: 80% ;
+  margin-left: 10% ;
+  margin-right: 10% ;
+/*background-color: #000000;
+color:black;*/
+}
+div#mn_location_container{
+/*the top level - add url login etc menu*/
+ width: 80% ;
+  margin-left: 10% ;
+  margin-right: 10% ;
+/*background-color: #000000;
+color:black;*/
+}
+div#mn_results_table{
+/*the top level - add url login etc menu*/
+ width: 500px ;
+  margin-left: auto ;
+  margin-right: auto ;
+/*background-color: #000000;
+color:black;*/
+}
+
+div #mn_paginator_menu_container{
+/*the top of results pages with more than 20 links in results Page 1, Page 2 etc
+ width: 80% ; */
+  margin-left: auto ;
+  margin-right: auto ;
+  border: 1px black solid ;
+  padding: 10px ;
+ /* table-layout: fixed ; */
+  border-collapse: collapse ;
+ /*  border: 1px black solid ; */
+  display: flex;
+  justify-content: center;
+ /* background-color: #000000; */
+color:black;
+}
+.mn_paginator_menu_table {
+/*dropdown 2nd page*/
+ /* table-layout: fixed ; */
+ 
+ /* margin-left: auto ;
+  margin-right: auto ; */
+ float: left; 
+  border-collapse: collapse ;
+/*  border: 1px black solid ; */
+  display: flex;
+  justify-content: center;
+}
+
+/*
+table#mn_paginator_menu_table tr {
+ /* width: 50% ;  There will be a variable number of Pages and <tds> but only one row so putting the width and styling in the code
+  border: 1px black solid ;
+  padding: 10px ;
+  /*width: 80% ;
+}
+table#mn_mn_paginator_menu_table th {
+  font-style: italic ;
+} 
+*/
+
+table#mn_subcat_table {
+/*dropdown 2nd page*/
+  table-layout: inherit ;
+  width: 80% ;
+  margin-left: 10% ;
+  margin-right: 10% ;
+  border-collapse: collapse ;
+  border: 1px black solid ;
+}
+table#mn_subcat_table td {
+    border: 1px black solid ;
+  padding: 10px ;
+}
+table#mn_subcat_table caption {
+  font-style: italic ;
+} 
+
+table#mn_location_table {
+/*dropdown 2nd page*/
+  table-layout: inherit ;
+  width: 80% ;
+  margin-left: 10% ;
+  margin-right: 10% ;
+  border-collapse: collapse ;
+  border: 1px black solid ;
+}
+
+table#mn_location_table td {
+  border: 1px black solid ;
+  padding: 10px ;
+/*color:red;*/
+}
+table#mn_location_table caption {
+  font-style: italic ;
+} 
+
+table#mn_main_cats_table {
+/*1st page category list*/
+  table-layout: fixed ;
+  width: 80% ;
+  margin-left: 10% ;
+  margin-right: 10% ;
+  border-collapse: collapse ;
+  border: 1px black solid ;
+}
+table#mn_main_cats_table tr {
+  width: 80% ;
+  margin-left: 10% ;
+  margin-right: 10% ;
+  border: 1px black solid ;
+  padding: 10px ;
+}
+table#mn_main_cats_table caption {
+  font-style: italic ;
+} 
+
+/* Zebra striping */
+a:nth-of-type(odd) { 
+  /*background: white; */ 
+color: black; 
+}
+tr:nth-of-type(odd) { 
+  background: #1ab7ea; 
+color: black; 
+}
+th { 
+  background: #34465d; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+
+  text-align: left; 
+}
+#boxes {
+width: 80%; 
+margin: auto ;
+ 
+  }
+ #leftbox {
+                float:left; 
+                background:Red;
+                width:25%;
+                height:280px;
+            }
+            #middlebox{
+                float:left; 
+                background:Green;
+                width:10%;
+                height:280px;
+            }
+            #rightbox{
+                float:left;
+                background:blue;
+                width:25%;
+                height:280px;
+            }
+            h1{
+                color:green;
+                text-align:center;
+            }
+           * {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+ /* height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.column:nth-child(even) {
+  background-color: #f2f2f2;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+ /* width: 800px ;
+  margin-left: 0 ;
+  margin-right: auto ;
+  border: 3px solid #4287f5; */
+}

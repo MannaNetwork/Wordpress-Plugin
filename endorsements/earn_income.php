@@ -10,7 +10,7 @@ require_once($root.'/wp-config.php');
 get_header();
 include(dirname(__DIR__, 1)."/includes/get_wp_option_values.php");
 
-$plugin_is_registered = get_option('plugin_is_registered');
+$plugin_is_registered = get_option('mn_plugin_is_registered');
 if($plugin_is_registered == "no" || $plugin_is_registered == "")
 {
 include(dirname(__DIR__, 1).'/translations/en_no_config.php');
@@ -23,7 +23,7 @@ $affiliate_num = $_GET['lnk_num'];
    <div>
      <div> 
        <div class="modalHeader"><h1 align="center">Earn Income!</h1></div> 
-            <p align="left">Our web directory is one of a network of many on individually owned and operated websites that co-operate together to advertise each other's websites and it offers you the opportunity to earn income (either in the form of Bitcoin Cash or advertising credits) too! </p>
+            <p align="left">Our web directory is one of a network of many on individually owned and operated websites that co-operate together to advertise each other's websites and it offers you the opportunity to earn income (either in the form of BitcoinSV or advertising credits) too! </p>
    
 <p  align="left">And it is available for free!
 <h1 style="text-align: center;">Options</h1>
@@ -55,7 +55,7 @@ $affiliate_num = $_GET['lnk_num'];
 <tr><td colspan="2" width="100%"><h2>3) Affiliate Program...</h2>
 <div  class="grid_12"  style="background-color:lightgrey; width:97%; height:80px; border: 2px solid; border-radius: 25px; padding:10px 10px 10px;  margin-left: auto ;
   margin-right: auto ;">
-<p class="smallerFont" >Even if you don't operate a website the Network offers an affiliate system that provides opportunities to earn Bitcoin Cash selling the network's web traffic!</p>
+<p class="smallerFont" >Even if you don't operate a website the Network offers an affiliate system that provides opportunities to earn BitcoinSV selling the network's web traffic!</p>
 	</div>
 </td></tr>
 

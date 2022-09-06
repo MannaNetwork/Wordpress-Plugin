@@ -1,22 +1,18 @@
 <style>
-  table,
-            th,
-            td {
-                border: 1px solid black;
-                border-collapse: collapse;
-            }
-  
-            table {
-                width: 50%;
-            }
-  
-            table.fixed {
-                table-layout: fixed;
-            }
-            table.fixed td {
-                overflow: hidden;
-            }
 
+.page-template-fullwidth .div#primary, .page-template-fullwidth .hentry {max-width:100%!important;}
+.txtHint1 {
+  background-color: yellow;
+}
+.txtHint2 {
+  background-color: yellow;
+}
+.txtHint3 {
+  background-color: yellow;
+}
+.txtHint4 {
+  background-color: yellow;
+}
 DIV.table 
 {
     display:table;
@@ -79,19 +75,9 @@ div#full-width {
   margin-right: -33.33%;
 }
 
- td:nth-child(1) {
-                width: 40%;
-            }
-  
-            // Fixing width of second 
-            // column of each row 
-            td:nth-child(2) {
-                width: 60%;
-            }
-
 div#mn_main_cats_container{
 /*the top level - add url login etc menu*/
- width: 100% ;
+ width: 700px ;
   margin-left: auto ;
   margin-right: auto ;
 /*background-color: #000000;
@@ -101,7 +87,7 @@ opacity: 0.2; */
 }
 div#mn_main_container{
 /*the top level - add url login etc menu*/
- width: 1000px ;
+ width: 100% ;
   margin-left: auto ;
   margin-right: auto ;
 
@@ -110,7 +96,7 @@ color:black;*/
 }
 div#mn_main_menu_container{
 /*the top level - add url login etc menu*/
- width: 700px ;
+ width: 80% ;
   margin-left: auto ;
   margin-right: auto ;
 /*background-color: #000000;
@@ -118,7 +104,7 @@ color:black;*/
 }
 div#mn_subcat_container{
 /*the top level - add url login etc menu*/
- width: 700px ;
+ width: 80% ;
   margin-left: auto ;
   margin-right: auto ;
 /*background-color: #000000;
@@ -126,7 +112,7 @@ color:black;*/
 }
 div#mn_location_container{
 /*the top level - add url login etc menu*/
- width: 700px ;
+ width: 90% ;
   margin-left: auto ;
   margin-right: auto ;
 /*background-color: #000000;
@@ -134,7 +120,7 @@ color:black;*/
 }
 div#mn_results_table{
 /*the top level - add url login etc menu*/
- width: 500px ;
+ width: 90% ;
   margin-left: auto ;
   margin-right: auto ;
 /*background-color: #000000;
@@ -149,18 +135,18 @@ div#mn_paginator_menu_container{
   table-layout: fixed ;
   width: 100% ;
   border-collapse: collapse ;
-  border: 1px black solid ;
+  border: 0px black solid ;
 }
 table#mn_paginator_menu_table {
 /*dropdown 2nd page*/
   table-layout: fixed ;
   width: 100% ;
   border-collapse: collapse ;
-  border: 1px black solid ;
+  border: 0px black solid ;
 }
 table#mn_paginator_menu_table td {
  /* width: 50% ;  There will be a variable number of Pages and <tds> but only one row so putting the width and styling in the code*/
-  border: 1px black solid ;
+  border: 0px black solid ;
   padding: 10px ;
 }
 table#mn_mn_paginator_menu_table caption {
@@ -173,10 +159,10 @@ table#mn_subcat_table {
   table-layout: inherit ;
   width: 100% ;
   border-collapse: collapse ;
-  border: 1px black solid ;
+  border: 0px black solid ;
 }
 table#mn_subcat_table td {
-    border: 1px black solid ;
+    border: 0px black solid ;
   padding: 10px ;
 }
 table#mn_subcat_table caption {
@@ -188,11 +174,11 @@ table#mn_location_table {
   table-layout: inherit ;
   width: 100% ;
   border-collapse: collapse ;
-  border: 1px black solid ;
+  border: 0px black solid ;
 }
 
 table#mn_location_table td {
-  border: 1px black solid ;
+  border: 0px black solid ;
   padding: 10px ;
 /*color:red;*/
 }
@@ -202,13 +188,13 @@ table#mn_location_table caption {
 
 table#mn_main_cats_table {
 /*1st page category list*/
-  table-layout: fixed ;
-  width: 100% ;
+  table-layout: auto ;
+  width: 100%;
   border-collapse: collapse ;
-  border: 1px black solid ;
+  border: 0px black solid ;
 }
-table#mn_main_cats_table tr {
-  width: 100% ;
+table#mn_main_cats_table td {
+  width: 50% ;
   border: 1px black solid ;
   padding: 10px ;
 }
@@ -218,7 +204,7 @@ table#mn_main_cats_table caption {
 
 table#mn_results_table {
 /*2nt page results/ads list*/
-  table-layout: fixed ;
+  table-layout: auto ;
   width: 100% ;
   border-collapse: collapse ;
   border: 1px black solid ;
@@ -239,7 +225,7 @@ table#mn_results_table caption {
 	font-family: 'Work Sans', sans-serif;
 *********************************************************/
 
-/* @import url('https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900');  */
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900');
 
 
 
@@ -514,5 +500,118 @@ td, th {
 
   text-align: left; 
 }
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	/*
+	Label the data
+	*/
+	td:nth-of-type(1):before { content: "First Name"; }
+	td:nth-of-type(2):before { content: "Last Name"; }
+	td:nth-of-type(3):before { content: "Job Title"; }
+	td:nth-of-type(4):before { content: "Favorite Color"; }
+	td:nth-of-type(5):before { content: "Wars of Trek?"; }
+	td:nth-of-type(6):before { content: "Avitar Name"; }
+	td:nth-of-type(7):before { content: "Date of Birth"; }
+	td:nth-of-type(8):before { content: "Dream Vacation City"; }
+	td:nth-of-type(9):before { content: "GPA"; }
+	td:nth-of-type(10):before { content: "Arbitrary Data"; }
+}
+
+.column-left{ float: left; width: auto; }
+.column-right{ float: right; width: auto; }
+.column-center{ display: inline-block; width: 300px; margin:auto; text-align: center; }
+
+.sidebar-nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidebar-nav .metismenu {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-nav .metismenu li + li {
+  margin-top: 5px;
+}
+
+.sidebar-nav .metismenu li:first-child {
+  margin-top: 5px;
+}
+.sidebar-nav .metismenu li:last-child {
+  margin-bottom: 5px;
+}
+
+.sidebar-nav .metismenu > li {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.sidebar-nav .metismenu a {
+  position: relative;
+  display: block;
+  padding: 13px 15px;
+  color: #212529;
+  transition: all 0.3s ease-out;
+  text-decoration: none;
+}
+
+.sidebar-nav .metismenu ul a {
+  padding: 10px 15px 10px 30px;
+}
+
+.sidebar-nav .metismenu ul ul a {
+  padding: 10px 15px 10px 45px;
+}
+
+.sidebar-nav .metismenu a:hover,
+.sidebar-nav .metismenu a:focus,
+.sidebar-nav .metismenu a:active,
+.sidebar-nav .metismenu .mm-active > a {
+  color: #0c63e4;
+  text-decoration: none;
+}
+
+.sidebar-nav .metismenu .mm-active > a {
+  background: #e7f1ff;
+  border-radius: 3px;
+}
 
 </style>
+
