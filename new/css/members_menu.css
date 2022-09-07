@@ -1,0 +1,171 @@
+ <style>
+
+header{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.page-template-fullwidth .div#primary, .page-template-fullwidth .hentry {max-width:100%!important;}
+#box_content{
+    display:table;
+width: 300px ;
+  margin-left: auto ;
+  margin-right: auto ;
+}
+
+#index_content{
+    display:table;
+width: 80% ;
+  margin-left: auto ;
+  margin-right: auto ;
+}
+
+#logoarea{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2; /* width of logo area - 2/10 */
+ -webkit-box-pack: center;
+     -ms-flex-pack: center;
+         justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: white;
+}
+
+#logoarea img{
+  width: 60px; /* width of logo */
+	border-width: 0;
+  height: auto;
+}
+
+.navmenu{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 8;
+      -ms-flex: 8;
+          flex: 8; /* width of nav menu area - 8/10 */
+}
+
+.navmenu li{
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+.navmenu li a{
+width: 175px ;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 60px; /* height of links */
+  padding: 0 10px;
+  color: black;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: orange; /* default background color */
+  text-decoration: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; /* center text horizontally */
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; /* center text vertically */
+  box-shadow: 0-10px 3px rgba(0,0,0,.1) inset;
+  transition: all .3s;
+}
+
+.navmenu li:nth-of-type(2) a{
+  background: #FF0080;
+}
+
+.navmenu li:nth-of-type(3) a{
+  background: #C1E2DE;
+}
+
+.navmenu li:nth-of-type(4) a{
+  background: #90D531;
+}
+
+.navmenu li:nth-of-type(5) a{
+  background: #FDE74C;
+}
+
+.navmenu li a:hover{
+  opacity: .8;
+  box-shadow: 0-10px 3px rgba(0,0,0,.2) inset, 0 15px 15px -5px gray;
+  -moz-transform: rotateX(20deg);
+  -webkit-transform: rotateX(20deg);
+  transform: rotateX(20deg);
+  -moz-transform-origin: 50% 0;
+  -webkit-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-transition: all .5s;
+  transition: all .3s;
+}
+
+@media (max-width: 680px){
+  header{
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column; /* switch to vertical stacked layout */
+    font-size: .9em; /* decrease font size */
+  }
+  
+  .navmenu{
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap; /* allow wrap of menu items */
+  }
+
+  .navmenu li a{
+    height: 80px;
+  }
+}
+
+
+</style>
+
+<!--[if lte IE 9]>
+
+	<style>
+
+	/* IE9 specific CSS */
+
+	header{
+		overflow: hidden;
+	}
+	
+	#logoarea{
+		float: left;
+	}
+
+	.navmenu{
+		float: left;
+	}
+
+	.navmenu li{
+		display: inline;
+	}
+
+	.navmenu li a{
+		padding: 10px;
+		float: left;
+		display: block;
+	}
+
+
+	</style>
+<![endif]-->
+

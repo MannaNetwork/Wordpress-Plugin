@@ -1,0 +1,617 @@
+<style>
+
+.page-template-fullwidth .div#primary, .page-template-fullwidth .hentry {max-width:100%!important;}
+.txtHint1 {
+  background-color: yellow;
+}
+.txtHint2 {
+  background-color: yellow;
+}
+.txtHint3 {
+  background-color: yellow;
+}
+.txtHint4 {
+  background-color: yellow;
+}
+DIV.table 
+{
+    display:table;
+width: 700px ;
+  margin-left: auto ;
+  margin-right: auto ;
+}
+FORM.tr, DIV.tr
+{
+    display:table-row;
+}
+
+SPAN.td
+{
+    display:table-cell;
+width: 300px ;
+  margin-left: auto ;
+  margin-right: auto ;
+}
+.mn_btn{
+  color:#000000;
+  background:rgba(0, 0, 0, 0.5);
+opacity:.6;
+  padding:10px 20px;
+  font-size:12px;
+  text-decoration:none;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.mn_btn:hover{
+  border:none;
+  background:rgba(0, 0, 0, 0.4);
+  background:#ffffff;
+  padding:20px 20px; 
+  color:#1b1b1b;
+}
+.mn_btn td{
+text-align:center;
+}
+
+        
+.top {
+    position:absolute;
+    left:0; right:0;
+    height: 92px;
+}
+.left {
+    position:absolute;
+    left:0; top:92px; bottom: 0;
+    width: 178px;
+}
+.main {
+    position: absolute;
+    left:178px; top:92px; right:0; bottom:0;
+}
+div#full-width {
+  /* 1/3 of 60% = the 20% margin on either side */
+  margin-left: -33.33%;
+  margin-right: -33.33%;
+}
+
+div#mn_main_cats_container{
+/*the top level - add url login etc menu*/
+ width: 700px ;
+  margin-left: auto ;
+  margin-right: auto ;
+/*background-color: #000000;
+color:black;
+opacity: 0.2; */
+
+}
+div#mn_main_container{
+/*the top level - add url login etc menu*/
+ width: 100% ;
+  margin-left: auto ;
+  margin-right: auto ;
+
+/*background-color: #000000;
+color:black;*/
+}
+div#mn_main_menu_container{
+/*the top level - add url login etc menu*/
+ width: 80% ;
+  margin-left: auto ;
+  margin-right: auto ;
+/*background-color: #000000;
+color:black;*/
+}
+div#mn_subcat_container{
+/*the top level - add url login etc menu*/
+ width: 80% ;
+  margin-left: auto ;
+  margin-right: auto ;
+/*background-color: #000000;
+color:black;*/
+}
+div#mn_location_container{
+/*the top level - add url login etc menu*/
+ width: 90% ;
+  margin-left: auto ;
+  margin-right: auto ;
+/*background-color: #000000;
+color:black;*/
+}
+div#mn_results_table{
+/*the top level - add url login etc menu*/
+ width: 90% ;
+  margin-left: auto ;
+  margin-right: auto ;
+/*background-color: #000000;
+color:black;*/
+}
+
+div#mn_paginator_menu_container{
+/*the top of results pages with more than 20 links in results Page 1, Page 2 etc*/
+ width: 500px ;
+  margin-left: auto ;
+  margin-right: auto ;
+  table-layout: fixed ;
+  width: 100% ;
+  border-collapse: collapse ;
+  border: 0px black solid ;
+}
+table#mn_paginator_menu_table {
+/*dropdown 2nd page*/
+  table-layout: fixed ;
+  width: 100% ;
+  border-collapse: collapse ;
+  border: 0px black solid ;
+}
+table#mn_paginator_menu_table td {
+ /* width: 50% ;  There will be a variable number of Pages and <tds> but only one row so putting the width and styling in the code*/
+  border: 0px black solid ;
+  padding: 10px ;
+}
+table#mn_mn_paginator_menu_table caption {
+  font-style: italic ;
+} 
+
+
+table#mn_subcat_table {
+/*dropdown 2nd page*/
+  table-layout: inherit ;
+  width: 100% ;
+  border-collapse: collapse ;
+  border: 0px black solid ;
+}
+table#mn_subcat_table td {
+    border: 0px black solid ;
+  padding: 10px ;
+}
+table#mn_subcat_table caption {
+  font-style: italic ;
+} 
+
+table#mn_location_table {
+/*dropdown 2nd page*/
+  table-layout: inherit ;
+  width: 100% ;
+  border-collapse: collapse ;
+  border: 0px black solid ;
+}
+
+table#mn_location_table td {
+  border: 0px black solid ;
+  padding: 10px ;
+/*color:red;*/
+}
+table#mn_location_table caption {
+  font-style: italic ;
+} 
+
+table#mn_main_cats_table {
+/*1st page category list*/
+  table-layout: auto ;
+  width: 100%;
+  border-collapse: collapse ;
+  border: 0px black solid ;
+}
+table#mn_main_cats_table td {
+  width: 50% ;
+  border: 1px black solid ;
+  padding: 10px ;
+}
+table#mn_main_cats_table caption {
+  font-style: italic ;
+} 
+
+table#mn_results_table {
+/*2nt page results/ads list*/
+  table-layout: auto ;
+  width: 100% ;
+  border-collapse: collapse ;
+  border: 1px black solid ;
+}
+table#mn_results_table td {
+  width: 50% ;
+  border: 1px black solid ;
+  padding: 10px ;
+}
+table#mn_results_table caption {
+  font-style: italic ;
+} 
+
+
+/* ******************************************************
+	Author URI: https://codeconvey.com/
+	Demo Purpose Only - May not require to add.
+	font-family: 'Work Sans', sans-serif;
+*********************************************************/
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900');
+
+
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+article, header, section, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+    display: block;
+}
+body {
+    background:#21759b none repeat scroll 0 0;
+    color: #fff;
+    font-family: "Raleway",sans-serif;
+    font-size: 100%;
+    line-height: 24px;
+    margin: 0;
+	padding:0;
+
+}
+a{
+	font-family: "Raleway",sans-serif;
+	text-decoration: none;
+	outline: none;
+
+}
+a:hover, a:focus {
+	color: #373e18;
+}
+section {
+    float: left;
+    width: 100%;
+	 margin-top:3em;
+	 margin-bottom:2em;
+}
+h2 {
+    color: #1a0e0e;
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0;
+    line-height: normal;
+	text-transform:uppercase;
+}
+h2 span {
+    display: block;
+    padding: 0;
+    font-size: 18px;
+    opacity: 0.7;
+    margin-top: 5px;
+	text-transform:uppercase;
+}
+
+#float-right{
+	float:right;	
+}
+
+/* ******************************************************
+	Header
+*********************************************************/
+
+.ScriptTop {
+    background: #fff none repeat scroll 0 0;
+    float: left;
+    font-size: 0.69em;
+    font-weight: 600;
+    line-height: 2.2;
+    padding: 12px 0;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+/* To Navigation Style 1*/
+.ScriptTop ul {
+    margin: 24px 0;
+    padding: 0;
+    text-align: left;
+}
+.ScriptTop li{
+	list-style:none;	
+	display:inline-block;
+}
+.ScriptTop li a {
+    background: #6a4aed none repeat scroll 0 0;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 18px;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+.ScriptTop li a:hover{
+	background:#000;
+	color:#fff;
+}
+
+
+/* Header*/
+.ScriptHeader {
+    float: left;
+    width: 100%;
+    padding-top: 3em;
+}
+.rt-heading {
+    border-bottom: solid 1px #d7dce4;
+    padding-bottom: 10px;
+    margin: 0 auto;
+}
+
+.ScriptHeader h1{
+    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    line-height: normal;
+}
+.ScriptHeader h2 {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 5px 0 0;
+    line-height: normal;
+
+}
+
+.ScriptHeader h1 span {
+    display: block;
+    padding: 0;
+    font-size: 22px;
+    opacity: 0.7;
+    margin-top: 5px;
+	text-transform:uppercase;
+}
+.ScriptHeader span {
+    display: block;
+    padding: 0;
+    font-size: 22px;
+    opacity: 0.7;
+    margin-top: 5px;
+}
+
+
+
+
+/* ******************************************************
+	Live Demo
+*********************************************************/
+
+
+
+
+
+/* ******************************************************
+	Responsive Grids
+*********************************************************/
+
+.rt-container {
+	margin: 0 auto;
+	padding-left:12px;
+	padding-right:12px;
+}
+.rt-row:before, .rt-row:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.rt-row:after {
+  clear: both;
+}
+[class^="col-rt-"] {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  padding: 0 15px;
+  min-height: 1px;
+  position: relative;
+}
+
+
+@media (min-width: 768px) {
+  .rt-container {
+    width: 750px;
+  }
+  [class^="col-rt-"] {
+    float: left;
+    width: 49.9999999999%;
+  }
+  .col-rt-6, .col-rt-12 {
+    width: 100%;
+  }
+  
+}
+
+@media (min-width: 1200px) {
+	.rt-container {
+		width: 1170px;
+	}
+	.col-rt-1 {
+		width:16.6%;
+	}
+	.col-rt-2 {
+		width:30.33%;
+	}
+	.col-rt-3 {
+		width:50%;
+	}
+	.col-rt-4 {
+		width: 67.664%;
+	}
+	.col-rt-5 {
+		width: 83.33%;
+	}
+	
+
+}
+
+@media only screen and (min-width:240px) and (max-width: 768px){
+	 .ScriptTop h1, .ScriptTop ul {
+		text-align: center;
+	}
+	.ScriptTop h1{
+		margin-top:0;
+		margin-bottom:15px;
+	}
+	.ScriptTop ul{
+		 margin-top:12px;		
+	}
+	
+	.ScriptHeader h1,
+	.ScriptHeader h2, 
+	.scriptnav ul{
+		text-align:center;	
+	}
+	.scriptnav ul{
+		 margin-top:12px;		
+	}
+	#float-right{
+		float:none;	
+	}
+	
+}
+
+
+
+table { 
+  font-size:24px;
+  width: 100%; 
+  border-collapse: collapse; 
+}
+/* Zebra striping */
+a:nth-of-type(odd) { 
+  /*background: white; */ 
+color: black; 
+}
+tr:nth-of-type(odd) { 
+  background: #1ab7ea; 
+color: black; 
+}
+th { 
+  background: #34465d; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+
+  text-align: left; 
+}
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	/*
+	Label the data
+	*/
+	td:nth-of-type(1):before { content: "First Name"; }
+	td:nth-of-type(2):before { content: "Last Name"; }
+	td:nth-of-type(3):before { content: "Job Title"; }
+	td:nth-of-type(4):before { content: "Favorite Color"; }
+	td:nth-of-type(5):before { content: "Wars of Trek?"; }
+	td:nth-of-type(6):before { content: "Avitar Name"; }
+	td:nth-of-type(7):before { content: "Date of Birth"; }
+	td:nth-of-type(8):before { content: "Dream Vacation City"; }
+	td:nth-of-type(9):before { content: "GPA"; }
+	td:nth-of-type(10):before { content: "Arbitrary Data"; }
+}
+
+.column-left{ float: left; width: auto; }
+.column-right{ float: right; width: auto; }
+.column-center{ display: inline-block; width: 300px; margin:auto; text-align: center; }
+
+.sidebar-nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidebar-nav .metismenu {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-nav .metismenu li + li {
+  margin-top: 5px;
+}
+
+.sidebar-nav .metismenu li:first-child {
+  margin-top: 5px;
+}
+.sidebar-nav .metismenu li:last-child {
+  margin-bottom: 5px;
+}
+
+.sidebar-nav .metismenu > li {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.sidebar-nav .metismenu a {
+  position: relative;
+  display: block;
+  padding: 13px 15px;
+  color: #212529;
+  transition: all 0.3s ease-out;
+  text-decoration: none;
+}
+
+.sidebar-nav .metismenu ul a {
+  padding: 10px 15px 10px 30px;
+}
+
+.sidebar-nav .metismenu ul ul a {
+  padding: 10px 15px 10px 45px;
+}
+
+.sidebar-nav .metismenu a:hover,
+.sidebar-nav .metismenu a:focus,
+.sidebar-nav .metismenu a:active,
+.sidebar-nav .metismenu .mm-active > a {
+  color: #0c63e4;
+  text-decoration: none;
+}
+
+.sidebar-nav .metismenu .mm-active > a {
+  background: #e7f1ff;
+  border-radius: 3px;
+}
+
+</style>
+
